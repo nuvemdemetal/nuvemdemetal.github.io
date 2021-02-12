@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>yaml on MetalHead</title>
-    <link>https:///nuvemdemetal.github.io/tags/yaml/</link>
+    <link>https:///nuvemdemetal.com.br/tags/yaml/</link>
     <description>Recent content in yaml on MetalHead</description>
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</managingEditor>
     <webMaster>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</webMaster>
     <lastBuildDate>Fri, 09 Oct 2020 16:56:19 -0300</lastBuildDate>
     
-	<atom:link href="https:///nuvemdemetal.github.io/tags/yaml/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https:///nuvemdemetal.com.br/tags/yaml/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Roteamento de requisições com Istio</title>
-      <link>https:///nuvemdemetal.github.io/posts/roteamento_de_requisicoes_com_istio/</link>
+      <link>https:///nuvemdemetal.com.br/posts/roteamento_de_requisicoes_com_istio/</link>
       <pubDate>Fri, 09 Oct 2020 16:56:19 -0300</pubDate>
       <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
-      <guid>https:///nuvemdemetal.github.io/posts/roteamento_de_requisicoes_com_istio/</guid>
+      <guid>https:///nuvemdemetal.com.br/posts/roteamento_de_requisicoes_com_istio/</guid>
       <description>O Istio é composto por uma malha de serviços, nele temos uma observabilidade completa da aplicação (com Kiali.. Jaeger..) e é possível limitar por exemplo, qual versão da aplicação quer expor, qual versão da aplicação o usuário X deve ter acesso e um monte de outras coisas mais.
 Presumo que tenha algum conhecimento de k8s e Service Mesh para continuar a leitura, mas se não tiver, não se preocupe, é simples entender o que está acontecendo aqui &amp;gt; Para criar o acesso a determinada versão da aplicação primeiro é preciso criar um Destination Rule (Policy aplicada após o roteamento):</description>
     </item>

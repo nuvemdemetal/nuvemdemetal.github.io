@@ -2,103 +2,103 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on MetalHead</title>
-    <link>https:///nuvemdemetal.github.io/tags/</link>
+    <link>https:///nuvemdemetal.com.br/tags/</link>
     <description>Recent content in Tags on MetalHead</description>
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</managingEditor>
     <webMaster>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</webMaster>
     <lastBuildDate>Fri, 09 Oct 2020 16:56:19 -0300</lastBuildDate>
     
-	<atom:link href="https:///nuvemdemetal.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https:///nuvemdemetal.com.br/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>istio</title>
-      <link>https:///nuvemdemetal.github.io/tags/istio/</link>
+      <link>https:///nuvemdemetal.com.br/tags/istio/</link>
       <pubDate>Fri, 09 Oct 2020 16:56:19 -0300</pubDate>
       <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
-      <guid>https:///nuvemdemetal.github.io/tags/istio/</guid>
+      <guid>https:///nuvemdemetal.com.br/tags/istio/</guid>
       <description></description>
     </item>
     
     <item>
       <title>jaeger</title>
-      <link>https:///nuvemdemetal.github.io/tags/jaeger/</link>
+      <link>https:///nuvemdemetal.com.br/tags/jaeger/</link>
       <pubDate>Fri, 09 Oct 2020 16:56:19 -0300</pubDate>
       <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
-      <guid>https:///nuvemdemetal.github.io/tags/jaeger/</guid>
+      <guid>https:///nuvemdemetal.com.br/tags/jaeger/</guid>
       <description></description>
     </item>
     
     <item>
       <title>k8s</title>
-      <link>https:///nuvemdemetal.github.io/tags/k8s/</link>
+      <link>https:///nuvemdemetal.com.br/tags/k8s/</link>
       <pubDate>Fri, 09 Oct 2020 16:56:19 -0300</pubDate>
       <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
-      <guid>https:///nuvemdemetal.github.io/tags/k8s/</guid>
+      <guid>https:///nuvemdemetal.com.br/tags/k8s/</guid>
       <description></description>
     </item>
     
     <item>
       <title>kiali</title>
-      <link>https:///nuvemdemetal.github.io/tags/kiali/</link>
+      <link>https:///nuvemdemetal.com.br/tags/kiali/</link>
       <pubDate>Fri, 09 Oct 2020 16:56:19 -0300</pubDate>
       <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
-      <guid>https:///nuvemdemetal.github.io/tags/kiali/</guid>
+      <guid>https:///nuvemdemetal.com.br/tags/kiali/</guid>
       <description></description>
     </item>
     
     <item>
       <title>kubernetes</title>
-      <link>https:///nuvemdemetal.github.io/tags/kubernetes/</link>
+      <link>https:///nuvemdemetal.com.br/tags/kubernetes/</link>
       <pubDate>Fri, 09 Oct 2020 16:56:19 -0300</pubDate>
       <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
-      <guid>https:///nuvemdemetal.github.io/tags/kubernetes/</guid>
+      <guid>https:///nuvemdemetal.com.br/tags/kubernetes/</guid>
       <description></description>
     </item>
     
     <item>
       <title>metal</title>
-      <link>https:///nuvemdemetal.github.io/tags/metal/</link>
+      <link>https:///nuvemdemetal.com.br/tags/metal/</link>
       <pubDate>Fri, 09 Oct 2020 16:56:19 -0300</pubDate>
       <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
-      <guid>https:///nuvemdemetal.github.io/tags/metal/</guid>
+      <guid>https:///nuvemdemetal.com.br/tags/metal/</guid>
       <description></description>
     </item>
     
     <item>
       <title>nuvem</title>
-      <link>https:///nuvemdemetal.github.io/tags/nuvem/</link>
+      <link>https:///nuvemdemetal.com.br/tags/nuvem/</link>
       <pubDate>Fri, 09 Oct 2020 16:56:19 -0300</pubDate>
       <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
-      <guid>https:///nuvemdemetal.github.io/tags/nuvem/</guid>
+      <guid>https:///nuvemdemetal.com.br/tags/nuvem/</guid>
       <description></description>
     </item>
     
     <item>
       <title>nuvemdemetal</title>
-      <link>https:///nuvemdemetal.github.io/tags/nuvemdemetal/</link>
+      <link>https:///nuvemdemetal.com.br/tags/nuvemdemetal/</link>
       <pubDate>Fri, 09 Oct 2020 16:56:19 -0300</pubDate>
       <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
-      <guid>https:///nuvemdemetal.github.io/tags/nuvemdemetal/</guid>
+      <guid>https:///nuvemdemetal.com.br/tags/nuvemdemetal/</guid>
       <description></description>
     </item>
     
     <item>
       <title>servicemesh</title>
-      <link>https:///nuvemdemetal.github.io/tags/servicemesh/</link>
+      <link>https:///nuvemdemetal.com.br/tags/servicemesh/</link>
       <pubDate>Fri, 09 Oct 2020 16:56:19 -0300</pubDate>
       <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
-      <guid>https:///nuvemdemetal.github.io/tags/servicemesh/</guid>
+      <guid>https:///nuvemdemetal.com.br/tags/servicemesh/</guid>
       <description></description>
     </item>
     
     <item>
       <title>yaml</title>
-      <link>https:///nuvemdemetal.github.io/tags/yaml/</link>
+      <link>https:///nuvemdemetal.com.br/tags/yaml/</link>
       <pubDate>Fri, 09 Oct 2020 16:56:19 -0300</pubDate>
       <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
-      <guid>https:///nuvemdemetal.github.io/tags/yaml/</guid>
+      <guid>https:///nuvemdemetal.com.br/tags/yaml/</guid>
       <description></description>
     </item>
     
