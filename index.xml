@@ -24,6 +24,17 @@ DevOps
     </item>
     
     <item>
+      <title>Site estático, Blog, Loja e Proxy reverso</title>
+      <link>https:///nuvemdemetal.github.io/posts/site_estatico_blog_loja_proxyreverso/</link>
+      <pubDate>Thu, 10 Dec 2020 10:44:41 -0300</pubDate>
+      <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
+      <guid>https:///nuvemdemetal.github.io/posts/site_estatico_blog_loja_proxyreverso/</guid>
+      <description>Parte importante de toda automatização é entender como o processo funciona de forma manual. Aqui nós vamos contruir um Site estático, com um Blog (WordPress), uma loja (com Magento) e ainda configurar um proxy reverso.
+Estes são os passos:
+•	Criar um webserver centos7 na AWS •	Configurar uma loja com Magento •	Configurar um blog com WordPress •	Configurar o Tomcat •	Criar um site estático •	Criar um domínio e ajustar as entradas de DNS •	Criar certificado SSL wildcard</description>
+    </item>
+    
+    <item>
       <title>Subindo cluster k8s com Ansible, Terraform e Shell Script</title>
       <link>https:///nuvemdemetal.github.io/posts/clusterk8s_ansible_terraform_shellscript/</link>
       <pubDate>Tue, 03 Nov 2020 17:05:17 -0300</pubDate>

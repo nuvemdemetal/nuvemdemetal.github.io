@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Site estático, Blog, Loja e Proxy reverso - MetalHead</title>
+  <meta name="description" content="Parte importante de toda automatização é entender como o processo funciona de forma manual. Aqui nós vamos contruir um Site estático, com um Blog (WordPress), uma loja (com Magento) e ainda configurar um proxy reverso.
+Estes são os passos:
+•	Criar um webserver centos7 na AWS •	Configurar uma loja com Magento •	Configurar um blog com WordPress •	Configurar o Tomcat •	Criar um site estático •	Criar um domínio e ajustar as entradas de DNS •	Criar certificado SSL wildcard">
+  <meta name="author" content="Heldo Barbosa"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "MetalHead",
+    
+    "url": "https:\/\/\/nuvemdemetal.github.io"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/\/nuvemdemetal.github.io"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/\/nuvemdemetal.github.io",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/\/nuvemdemetal.github.io\/posts\/site_estatico_blog_loja_proxyreverso\/",
+          "name": "Site estático, blog, loja e proxy reverso"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "Heldo Barbosa"
+  },
+  "headline": "Site estático, Blog, Loja e Proxy reverso",
+  "description" : "Parte importante de toda automatização é entender como o processo funciona de forma manual. Aqui nós vamos contruir um Site estático, com um Blog (WordPress), uma loja (com Magento) e ainda configurar um proxy reverso.\nEstes são os passos:\n•\tCriar um webserver centos7 na AWS •\tConfigurar uma loja com Magento •\tConfigurar um blog com WordPress •\tConfigurar o Tomcat •\tCriar um site estático •\tCriar um domínio e ajustar as entradas de DNS •\tCriar certificado SSL wildcard",
+  "inLanguage" : "en",
+  "wordCount":  1658 ,
+  "datePublished" : "2020-12-10T10:44:41",
+  "dateModified" : "2020-12-10T10:44:41",
+  "image" : "https:\/\/\/nuvemdemetal.github.io\/img\/heldochileantifa.png",
+  "keywords" : [ "website, wordpress, magento, proxy, reverseproxy, devops, nuvem, nuvemdemetal, cloud, aws, metal" ],
+  "mainEntityOfPage" : "https:\/\/\/nuvemdemetal.github.io\/posts\/site_estatico_blog_loja_proxyreverso\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/\/nuvemdemetal.github.io",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/\/nuvemdemetal.github.io\/img\/heldochileantifa.png",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="Site estático, Blog, Loja e Proxy reverso" />
+<meta property="og:description" content="Parte importante de toda automatização é entender como o processo funciona de forma manual. Aqui nós vamos contruir um Site estático, com um Blog (WordPress), uma loja (com Magento) e ainda configurar um proxy reverso.
+Estes são os passos:
+•	Criar um webserver centos7 na AWS •	Configurar uma loja com Magento •	Configurar um blog com WordPress •	Configurar o Tomcat •	Criar um site estático •	Criar um domínio e ajustar as entradas de DNS •	Criar certificado SSL wildcard">
+<meta property="og:image" content="https:///nuvemdemetal.github.io/img/heldochileantifa.png" />
+<meta property="og:url" content="https:///nuvemdemetal.github.io/posts/site_estatico_blog_loja_proxyreverso/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="MetalHead" />
+
+  <meta name="twitter:title" content="Site estático, Blog, Loja e Proxy reverso" />
+  <meta name="twitter:description" content="Parte importante de toda automatização é entender como o processo funciona de forma manual. Aqui nós vamos contruir um Site estático, com um Blog (WordPress), uma loja (com Magento) e ainda configurar …">
+  <meta name="twitter:image" content="https:///nuvemdemetal.github.io/img/heldochileantifa.png" />
+  <meta name="twitter:card" content="summary" />
+  <link href='https:///nuvemdemetal.github.io/img/foto.ico' rel='icon' type='image/x-icon'/>
+  <meta name="generator" content="Hugo 0.68.3" />
+  <link rel="alternate" href="https:///nuvemdemetal.github.io/index.xml" type="application/rss+xml" title="MetalHead"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https:///nuvemdemetal.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https:///nuvemdemetal.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https:///nuvemdemetal.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https:///nuvemdemetal.github.io">MetalHead</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="linkedin" href="https://www.linkedin.com/in/heldobarbosa/">linkedin</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/nuvemdemetal.github.io/nuvemdemetal.github.io/about">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/nuvemdemetal.github.io/tags">Tags</a>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent">posts</a>
+              <div class="navlinks-children">
+                
+                  <a href="/nuvemdemetal.github.io/posts/site_estatico_blog_loja_proxyreverso/">Site estático, Blog, Loja e Proxy reverso</a>
+                
+                  <a href="/nuvemdemetal.github.io/posts/clusterk8s_ansible_terraform_shellscript/">Subindo cluster k8s com Ansible, Terraform e Shell Script</a>
+                
+                  <a href="/nuvemdemetal.github.io/posts/roteamento_de_requisicoes_com_istio/">Roteamento de requisições com Istio</a>
+                
+              </div>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+      <div class="avatar-container">
+        <div class="avatar-img-border">
+          <a title="MetalHead" href="https:///nuvemdemetal.github.io">
+            <img class="avatar-img" src="https:///nuvemdemetal.github.io/img/heldochileantifa.png" alt="MetalHead" />
+          </a>
+        </div>
+      </div>
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="posts-heading">
+              
+                <h1>Site estático, Blog, Loja e Proxy reverso</h1>
+              
+              
+                <hr class="small">
+              
+              
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p><img src="https://i.imgur.com/nQDnoAK.png" alt=""></p>
+<p>Parte importante de toda automatização é entender como o processo funciona de forma manual. Aqui nós vamos contruir um Site estático, com um Blog (WordPress), uma loja (com Magento) e ainda configurar um proxy reverso.</p>
+<p>Estes são os passos:</p>
+<p>•	Criar um webserver centos7 na AWS
+•	Configurar uma loja com Magento
+•	Configurar um blog com WordPress
+•	Configurar o Tomcat
+•	Criar um site estático
+•	Criar um domínio e ajustar as entradas de DNS
+•	Criar certificado SSL wildcard</p>
+<h2 id="centos-7-dns-e-segurança">CentOS 7, DNS e segurança</h2>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">yum update
+yum -y install epel-release
+yum -y install nginx
+systemctl start nginx
+systemctl <span class="nb">enable</span> nginx
+yum -y install vim
+</code></pre></div><p>Então subi uma máquina CentOS 7 na AWS e configurei o SSM, para ficar independente da chave.pem e me conectar de qualquer lugar. É um ponto de segurança importante para não perder o controle de acesso na máquina e dar mais autonomia ao administrador. &raquo;&raquo; <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/session-manager.html">https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/session-manager.html</a></p>
+<p>Em seguida me preocupei com o domínio, então cadastrei um gratuito no freenom (.tk). Ao colocar os dados é importante simular um endereço dos EUA para que consiga obter o domínio. Se você não tem uma casa nos EUA pode simular um endereço facilmente no google.
+O SG na AWS deve ser configurado conforme a necessidade: 80 para HTTP, 443 para HTTPS, 8080 para Tomcat e 22 caso ainda queira deixar SSH aberto em alternativa ao SSM.
+Caso queira ainda dar um pouco mais de segurança, recomendo o uso de um Firewall dentro da CentOS, funcionando como um Firewall de borda.</p>
+<p><img src="https://maliciacomjujuba.files.wordpress.com/2013/09/tumblr_inline_mkn4m7rigy1qz4rgp.gif" alt=""></p>
+<p>Logo após é preciso fazer o redirecionamento do DNS com o Route 53 na AWS. Este serviço vai garantir a comunicação do endereço hospedado, então crie uma “zona hospedada” com o domínio americano gratuito (rs). Outro detalhe interessante é usar um ElasticIP na sua instância para que as entradas não se percam ao reiniciar a máquina por exemplo.</p>
+<h2 id="nginx">NGINX</h2>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">sudo su
+yum update
+yum -y install epel-release
+yum -y install nginx
+systemctl start nginx
+systemctl <span class="nb">enable</span> nginx
+yum -y install vim
+</code></pre></div><h2 id="site-estático">Site estático</h2>
+<p>Os códigos das páginas que serão exibidos no navegador pelo NGINX ficam em <strong>/var/www/html</strong> . Então para o site estático criaremos um novo diretório com <strong>“mkdir site”</strong> e em seguida vamos apenas escrever “oi” em <strong>html</strong> com o comando “echo” :</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">echo</span> <span class="s2">&#34;&lt;center&gt;&lt;h1&gt;oi&lt;/h1&gt;&lt;center&gt;&#34;</span> &gt; /var/www/html/index.html
+</code></pre></div><p>E depois criaremos um arquivo de configuração no NGINX para este site estático em <strong>/etc/nginx/conf.d/</strong>, criando o arquivo <strong>site.conf</strong>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">echo</span> <span class="s2">&#34;&lt;center&gt;&lt;h1&gt;oi&lt;/h1&gt;&lt;center&gt;&#34;</span> &gt; /var/www/html/index.html
+</code></pre></div><p>E depois criaremos um arquivo de configuração no NGINX para este site estático em <strong>/etc/nginx/conf.d/</strong>, criando o arquivo <strong>site.conf</strong>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">server <span class="o">{</span>
+   listen  80<span class="p">;</span>
+   server_name site-barbosa.barbosateam.tk<span class="p">;</span>
+   error_log /var/log/nginx/site/error.log<span class="p">;</span>
+   location / <span class="o">{</span>
+       root  /var/www/html/site/<span class="p">;</span>
+       index  index.html index.htm<span class="p">;</span>
+   <span class="o">}</span>
+   error_page  <span class="m">500</span> <span class="m">502</span> <span class="m">503</span> <span class="m">504</span>  /50x.html<span class="p">;</span>
+<span class="o">}</span>
+</code></pre></div><p>Eu particularmente prefiro separar os logs por blocos do que depois caçar agulha em palheiro. Por isso que criei o diretório site para o error.log. Qualquer eventual problema é soltar o comando tail neste cara e debugar.</p>
+<p>Logo após, apenas adicionamos o apontamento no Route 53 da AWS, ou seja, criamos um registro apontando o DNS para o IP da CentOS7.</p>
+<h2 id="tomcat">Tomcat</h2>
+<p>O Tomcat foi instalado para a prática de proxy reverso, que inibe a entrada de possíveis invasores ao fazer requisições diretamente no servidor.</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1">#Necessário para o Tomcat</span>
+sudo yum install java-1.7.0-openjdk-devel
+<span class="c1">#Criando um usuário para o Tomcat</span>
+sudo groupadd tomcat
+<span class="c1">#WGET da massa, necessário para transferência de pacotes</span>
+sudo yum install wget
+<span class="c1">#Download do Tomcat</span>
+wget https://www.apache.org/dist/tomcat/tomcat-8/v8.5.49/bin/apache-tomcat-8.5.49.tar.gz /tmp
+<span class="c1">#Descompactando e mandando para /opt</span>
+<span class="nb">cd</span> /tmp
+tar xf apache-tomcat-8.5.49.tar.gz
+mv apache-tomcat-8.5.49 /opt/tomcat
+<span class="c1">#Alterando a permissão do arquivo</span>
+sudo useradd -M -s /bin/nologin -g tomcat -d /opt/tomcat tomcat
+<span class="c1">#Concedendo ao grupo do Tomcat todo o diretório de instalação</span>
+sudo chgrp -R tomcat /opt/tomcat
+<span class="c1">#Tornando o user tomcat dono dos diretórios</span>
+sudo chown -R tomcat webapps/ work/ temp/ logs/
+<span class="c1">#Criando arquivo de inicialização</span>
+sudo vim /etc/systemd/system/tomcat.service
+</code></pre></div><p>O arquivo deve conter o seguinte conteúdo:</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># Systemd unit file for tomcat</span>
+<span class="o">[</span>Unit<span class="o">]</span>
+<span class="nv">Description</span><span class="o">=</span>Apache Tomcat Web Application Container
+<span class="nv">After</span><span class="o">=</span>syslog.target network.target
+
+<span class="o">[</span>Service<span class="o">]</span>
+<span class="nv">Type</span><span class="o">=</span>forking
+
+<span class="nv">Environment</span><span class="o">=</span><span class="nv">JAVA_HOME</span><span class="o">=</span>/usr/lib/jvm/jre
+<span class="nv">Environment</span><span class="o">=</span><span class="nv">CATALINA_PID</span><span class="o">=</span>/opt/tomcat/temp/tomcat.pid
+<span class="nv">Environment</span><span class="o">=</span><span class="nv">CATALINA_HOME</span><span class="o">=</span>/opt/tomcat
+<span class="nv">Environment</span><span class="o">=</span><span class="nv">CATALINA_BASE</span><span class="o">=</span>/opt/tomcat
+<span class="nv">Environment</span><span class="o">=</span><span class="s1">&#39;CATALINA_OPTS=-Xms512M -Xmx1024M -server -XX:+UseParallelGC&#39;</span>
+<span class="nv">Environment</span><span class="o">=</span><span class="s1">&#39;JAVA_OPTS=-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom&#39;</span>
+
+<span class="nv">ExecStart</span><span class="o">=</span>/opt/tomcat/bin/startup.sh
+<span class="nv">ExecStop</span><span class="o">=</span>/bin/kill -15 <span class="nv">$MAINPID</span>
+
+<span class="nv">User</span><span class="o">=</span>tomcat
+<span class="nv">Group</span><span class="o">=</span>tomcat
+<span class="nv">UMask</span><span class="o">=</span><span class="m">0007</span>
+<span class="nv">RestartSec</span><span class="o">=</span><span class="m">10</span>
+<span class="nv">Restart</span><span class="o">=</span>always
+
+<span class="o">[</span>Install<span class="o">]</span>
+<span class="nv">WantedBy</span><span class="o">=</span>multi-user.target
+</code></pre></div><p>Depois de salvar o arquivo:</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1">#Reload no systemd</span>
+sudo systemctl daemon-reload
+<span class="c1">#Start no tomcat</span>
+sudo systemctl start tomcat
+<span class="c1">#Ativando serviço ao iniciar o sistema</span>
+sudo systemctl <span class="nb">enable</span> tomcat
+</code></pre></div><p><img src="https://64.media.tumblr.com/tumblr_lsk9c5dVKW1qk4hjeo1_500.gifv" alt=""></p>
+<p>Então lá no diretório dos arquivos de configuração, criamos o proxy reverso:</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">server <span class="o">{</span>
+ listen 80<span class="p">;</span>
+ server_name tomcat-barbosa.barbosateam.tk<span class="p">;</span>
+ access_log /var/log/nginx/tomcat/access.log<span class="p">;</span>
+ error_log /var/log/nginx/tomcat/error.log<span class="p">;</span>
+
+
+ location / <span class="o">{</span>
+  proxy_set_header X-Real-IP <span class="nv">$remote_addr</span><span class="p">;</span>
+  proxy_set_header Host <span class="nv">$host</span><span class="p">;</span>
+  proxy_set_header X-Forwarded-For <span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+
+  proxy_pass http://127.0.0.1:8080<span class="p">;</span>
+ <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><p>Com esta configuração será possível acessar o Tomcat na porta 80.</p>
+<h2 id="mysql">MySQL</h2>
+<p>O MySQL dentro da CentOS 7 vai ser compartilhado entre WordPress e Magento:</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1">#Adicionando repositório</span>
+sudo yum localinstall https://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm
+<span class="c1">#Atualizando sistema</span>
+sudo yum update
+<span class="c1">#Instalando MySQL</span>
+sudo yum install mysql-community-server
+<span class="c1">#Para que o MySQL inicie junto com o sistema</span>
+sudo systemctl <span class="nb">enable</span> mysqld
+<span class="c1">#Iniciando</span>
+sudo systemctl start mysqld
+<span class="c1">#Consultando senha do MySQL</span>
+sudo grep <span class="s1">&#39;temporary password&#39;</span> /var/log/mysqld.log &gt;&gt;&gt; A temporary password is generated <span class="k">for</span> root@localhost: q<span class="p">&amp;</span>0<span class="o">)</span>V!?fjksL
+<span class="c1">#Fazendo a instalação em modo seguro</span>
+sudo mysql_secure_installation
+</code></pre></div><h2 id="wordpress">WordPress</h2>
+<p>A primeira coisa é criar um banco de dados com o WordPress:</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1">#Criando o Banco</span>
+CREATE DATABASE wordpress<span class="p">;</span>
+<span class="c1">#Criando um usuario para o banco com o nome wordpressuser e a senha senhatemporaria.</span>
+CREATE USER wordpressuser@localhost IDENTIFIED BY <span class="s1">&#39;senhatemporaria&#39;</span><span class="p">;</span>
+<span class="c1">#Privilegio para o usuário que criamos anteriomente</span>
+GRANT ALL PRIVILEGES ON wordpress.* TO wordpressuser@localhost IDENTIFIED BY <span class="s1">&#39;senhatemporaria&#39;</span><span class="p">;</span>
+<span class="c1">#Modificando</span>
+FLUSH PRIVILEGES<span class="p">;</span>
+<span class="c1">#Saindo do MySQL</span>
+<span class="nb">exit</span>
+</code></pre></div><p>Não se esqueça que cada macaco deve estar no seu galho, então crie um diretório chamado do que você quiser lá em /var/www/html, no caso chamei o meu de Blog.</p>
+<p>Aqui nesta parte eu acabei instalando o PHP sem especificar que deveria ser o PHP7. Isto porque a útima versão do WordPress exige o PHP7. Para não cometer este erro e ser obrigado a fazer o upgrade do PHP instale a versão correta com este comando:</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">yum -y install php70w-fpm php70w-mcrypt php70w-curl php70w-cli php70w-mysql php70w-gd php70w-xsl php70w-json php70w-intl php70w-pear php70w-devel php70w-mbstring php70w-zip php70w-soap
+</code></pre></div><p>Mas se por um deslize:</p>
+<p><img src="https://media1.tenor.com/images/eb25229da8e5237a2ae9031c3d7a3fd4/tenor.gif?itemid=5446872" alt=""></p>
+<p>Instalou o PHP5, faça o upgrade da seguinte forma:</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1">#Remova o PHP5</span>
+ yum remove php-common php-fpm php-cli -y
+<span class="c1">#Instale o PHP7</span>
+yum -y install php70w-fpm php70w-mcrypt php70w-curl php70w-cli php70w-mysql php70w-gd php70w-xsl php70w-json php70w-intl php70w-pear php70w-devel php70w-mbstring php70w-zip php70w-soap
+<span class="c1">#Reinicie o NGINX</span>
+systemctl restart nginx
+<span class="c1">#Reinicie o PHP</span>
+systemctl restart php-fpm
+</code></pre></div><p>E então instale o WordPress:</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1">#Indo para a ṕasta de temporários para baixar o pacote</span>
+<span class="nb">cd</span> /tmp
+<span class="c1">#Fazendo o download</span>
+wget http://wordpress.org/latest.tar.gz
+<span class="c1">#Descompactando o pacote</span>
+tar xf latest.tar.gz
+<span class="c1">#Movendo a pasta para o diretório ao qual o NGINX vai ler</span>
+mv wordpress /var/www/html/blog
+<span class="c1">#Vamos alterar a permissão do diretório do blog</span>
+sudo chown -R nginx:nginx /var/www/html/blog/*
+<span class="c1">#Vamos ir até o diretorio do blog e fazer uma copia do arquivo de configuração chamado wp-config.php.</span>
+cp wp-config-sample.php wp-config.php
+</code></pre></div><p>Agora vamos alterar o arquivo wp-config.php com os dados do Banco:</p>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">// ** MySQL settings - You can get this info from your web host ** //
+/** The name of the database for WordPress */
+define(&#39;DB_NAME&#39;, &#39;wordpress&#39;);
+
+/** MySQL database username */
+define(&#39;DB_USER&#39;, &#39;wordpressuser&#39;);
+
+/** MySQL database password */
+define(&#39;DB_PASSWORD&#39;, &#39;password&#39;);
+</code></pre></div><p>E então podemos agora criar o arquivo de configuração em <strong>/etc/nginx/conf.d/blog.conf</strong>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">server {
+server_name blog-barbosa.barbosateam.tk;
+   root /var/www/html/blog/;
+   index index.html index.htm index.php;
+   access_log /var/log/nginx/blog/access.log;
+   error_log /var/log/nginx/blog/error.log;
+ location = /favicon.ico {
+       log_not_found off;
+       access_log off;
+   }
+   location = /robots.txt {
+       allow all;
+       log_not_found off;
+       access_log off;
+   }
+   location / {
+       try_files $uri $uri/ /index.php?$args;
+   }
+   location ~ \.php$ {
+       try_files $uri =404;
+       fastcgi_pass unix:/run/php/php-fpm.sock;
+       fastcgi_index   index.php;
+       fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+       include fastcgi_params;
+   }
+   location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg)$ {
+       expires max;
+       log_not_found off;
+   }
+}
+</code></pre></div><p>E conceder permissão no sistema:</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1">#Ajustes no Firewall SElinux</span>
+sudo setsebool -P httpd_can_network_connect on
+getenforce
+chcon -Rt httpd_sys_content_t /var/www/html/blog
+<span class="c1">#Verificando se está tudo OK com o NGINX</span>
+sudo nginx -t
+<span class="c1">#Restart no serviço NGINX</span>
+sudo service nginx restart
+</code></pre></div><h2 id="magento">Magento</h2>
+<p>É preciso configurar o arquivo php.ini:</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">vim /etc/php.ini
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">#Descomente as linhas
+cgi.fix_pathinfo=0
+session.save_path = &#34;/var/lib/php/session&#34;
+#Altere os valores
+memory_limit = 512M
+max_execution_time = 1800
+zlib.output_compression = On
+</code></pre></div><p>Em /etc/php-fpm.d/www.conf :</p>
+<div class="highlight"><pre class="chroma"><code class="language-php" data-lang="php">#É necessário setar o socket para o php-fpm
+listen = /var/run/php/php-fpm.sock
+</code></pre></div><p>Adicionando o grupo, usuário, nginx e a permissão.</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">listen.owner <span class="o">=</span> nginx
+listen.group <span class="o">=</span> nginx
+listen.mode <span class="o">=</span> <span class="m">0660</span>
+<span class="c1">#Descomente as seguintes linhas</span>
+env<span class="o">[</span>HOSTNAME<span class="o">]</span> <span class="o">=</span> <span class="nv">$HOSTNAME</span>
+env<span class="o">[</span>PATH<span class="o">]</span> <span class="o">=</span> /usr/local/bin:/usr/bin:/bin
+env<span class="o">[</span>TMP<span class="o">]</span> <span class="o">=</span> /tmp
+env<span class="o">[</span>TMPDIR<span class="o">]</span> <span class="o">=</span> /tmp
+env<span class="o">[</span>TEMP<span class="o">]</span> <span class="o">=</span> /tmp
+<span class="c1">#Crie dois diretórios</span>
+mkdir -p /var/lib/php/session/
+chown -R nginx:nginx /var/lib/php/session/
+<span class="c1">#Criando novo diretório para o php-fpm</span>
+mkdir -p /run/php/
+chown -R nginx:nginx /run/php/
+<span class="c1">#Iniciando o php-fpm</span>
+systemctl start php-fpm
+systemctl <span class="nb">enable</span> php-fpm
+</code></pre></div><p>Como troubleshooting, verifique se há algum erro e aonde está o php-fpm.sock:</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">netstat -pl <span class="p">|</span> grep php-fpm.sock
+</code></pre></div><p>E então crie o Banco para a Loja com Magento:</p>
+<div class="highlight"><pre class="chroma"><code class="language-mysql" data-lang="mysql"><span class="k">create</span> <span class="k">database</span> <span class="n">magentodb</span><span class="p">;</span>
+<span class="k">create</span> <span class="k">user</span> <span class="n">magentouser</span><span class="o">@</span><span class="n">localhost</span> <span class="k">identified</span> <span class="k">by</span> <span class="s1">&#39;Magento123@&#39;</span><span class="p">;</span>
+<span class="k">grant</span> <span class="k">all</span> <span class="k">privileges</span> <span class="k">on</span> <span class="n">magentodb</span><span class="p">.</span><span class="o">*</span> <span class="k">to</span> <span class="n">magentouser</span><span class="o">@</span><span class="n">localhost</span> <span class="k">identified</span> <span class="k">by</span> <span class="s1">&#39;Magento123@&#39;</span><span class="p">;</span>
+<span class="k">flush</span> <span class="k">privileges</span><span class="p">;</span>
+</code></pre></div><p>No diretório do Magento instalamos o Composer:</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">curl -sS https://getcomposer.org/installer <span class="p">|</span> sudo php -- --install-dir<span class="o">=</span>/usr/bin --filename<span class="o">=</span>composer
+<span class="c1">#E podemos fazer o download dos plugins</span>
+composer -v
+</code></pre></div><p>Finalmente o download do Magento:</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">cd</span> /var/www/
+mkdir html
+<span class="nb">cd</span> html
+wget https://github.com/magento/magento2/archive/2.1.zip
+<span class="c1">#Descompactando e renomeando</span>
+unzip 2.1.zip
+mv magento2-2.1 magento2
+<span class="c1">#Realizando a instalação das dependências</span>
+<span class="nb">cd</span> magento2
+composer install -v
+</code></pre></div><p>No diretório de do Magento, setamos a configuração do Magento. O seguinte bloco pode ser adicionado a linha de comando, com as respectivas informações do seu ambiente, é claro.</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">bin/magento</span> <span class="err">setup:install</span> <span class="err">--backend-frontname=</span><span class="s2">&#34;adminlogin&#34;</span> <span class="err">\</span>
+<span class="err">--key=</span><span class="s2">&#34;biY8vdWx4w8KV5Q59380Fejy36l6ssUb&#34;</span> <span class="err">\</span>
+<span class="err">--db-host=</span><span class="s2">&#34;localhost&#34;</span> <span class="err">\</span>
+<span class="err">--db-name=</span><span class="s2">&#34;magentodb&#34;</span> <span class="err">\</span>
+<span class="err">--db-user=</span><span class="s2">&#34;magentouser&#34;</span> <span class="err">\</span>
+<span class="err">--db-password=</span><span class="s2">&#34;Magento123@&#34;</span> <span class="err">\</span>
+<span class="err">--language=</span><span class="s2">&#34;en_US&#34;</span> <span class="err">\</span>
+<span class="err">--currency=</span><span class="s2">&#34;USD&#34;</span> <span class="err">\</span>
+<span class="err">--timezone=</span><span class="s2">&#34;America/Sao_Paulo&#34;</span> <span class="err">\</span>
+<span class="err">--use-rewrites=</span><span class="mi">1</span> <span class="err">\</span>
+<span class="err">--use-secure=</span><span class="mi">0</span> <span class="err">\</span>
+<span class="err">--base-url=</span><span class="s2">&#34;http://loja-barbosa.barbosateam.tk&#34;</span> <span class="err">\</span>
+<span class="err">--base-url-secure=</span><span class="s2">&#34;http://loja-barbosa.barbosateam.tk&#34;</span> <span class="err">\</span>
+<span class="err">--admin-user=adminuser</span> <span class="err">\</span>
+<span class="err">--admin-password=admin</span><span class="mi">123</span><span class="err">@</span> <span class="err">\</span>
+<span class="err">--admin-email=admin@newmagento.com</span> <span class="err">\</span>
+<span class="err">--admin-firstname=admin</span> <span class="err">\</span>
+<span class="err">--admin-lastname=user</span> <span class="err">\</span>
+<span class="err">--cleanup-database</span>
+</code></pre></div><p>Damos a permissão para a aplicação e para o NGINX:</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">chmod <span class="m">700</span> /var/www/magento2/app/etc
+chown -R nginx:nginx /var/www/magento2
+</code></pre></div><p>E FINALMENTE configuramos o magento.conf:</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">upstream fastcgi_backend <span class="o">{</span>
+        server  unix:/run/php/php-fpm.sock<span class="p">;</span>
+<span class="o">}</span>
+
+server <span class="o">{</span>
+
+        listen 80<span class="p">;</span>
+        server_name loja-barbosa.barbosateam.tk<span class="p">;</span>
+        <span class="nb">set</span> <span class="nv">$MAGE_ROOT</span> /var/www/html/magento2<span class="p">;</span>
+        <span class="nb">set</span> <span class="nv">$MAGE_MODE</span> developer<span class="p">;</span>
+        include /var/www/html/magento2/nginx.conf.sample<span class="p">;</span>
+<span class="o">}</span>
+<span class="c1">#Verificando se está tudo OK</span>
+nginx -t
+<span class="c1">#Reiniciando o NGINX</span>
+systemctl restart nginx
+</code></pre></div><p>Mais de 1.600 palavras e contando… É importante fazer de forma manual para entender como funciona.</p>
+<p>Se fizer o laboratório e não funcionar, por favor envie um email com o seu troubleshooting para <a href="mailto:barbosa@nuvemdemetal.com.br">barbosa@nuvemdemetal.com.br</a></p>
+<p><img src="https://66.media.tumblr.com/f904bf42571febbbc71c07941c98165c/tumblr_ndtq8oEL1v1rey868o1_500.gif" alt=""></p>
+
+
+        
+          <div class="blog-tags">
+            
+              <a href="https:///nuvemdemetal.github.io/tags/website/">website</a>&nbsp;
+            
+              <a href="https:///nuvemdemetal.github.io/tags/wordpress/">wordpress</a>&nbsp;
+            
+              <a href="https:///nuvemdemetal.github.io/tags/magento/">magento</a>&nbsp;
+            
+              <a href="https:///nuvemdemetal.github.io/tags/proxy/">proxy</a>&nbsp;
+            
+              <a href="https:///nuvemdemetal.github.io/tags/reverseproxy/">reverseproxy</a>&nbsp;
+            
+              <a href="https:///nuvemdemetal.github.io/tags/devops/">devops</a>&nbsp;
+            
+              <a href="https:///nuvemdemetal.github.io/tags/nuvem/">nuvem</a>&nbsp;
+            
+              <a href="https:///nuvemdemetal.github.io/tags/nuvemdemetal/">nuvemdemetal</a>&nbsp;
+            
+              <a href="https:///nuvemdemetal.github.io/tags/cloud/">cloud</a>&nbsp;
+            
+              <a href="https:///nuvemdemetal.github.io/tags/aws/">aws</a>&nbsp;
+            
+              <a href="https:///nuvemdemetal.github.io/tags/metal/">metal</a>&nbsp;
+            
+          </div>
+        
+
+        
+            <hr/>
+            <section id="social-share">
+              <div class="list-inline footer-links">
+                
+
+<div class="share-box" aria-hidden="true">
+    <ul class="share">
+      
+      <li>
+        <a href="//twitter.com/share?url=https%3a%2f%2f%2fnuvemdemetal.github.io%2fposts%2fsite_estatico_blog_loja_proxyreverso%2f&amp;text=Site%20est%c3%a1tico%2c%20Blog%2c%20Loja%20e%20Proxy%20reverso&amp;via=" target="_blank" title="Share on Twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f%2fnuvemdemetal.github.io%2fposts%2fsite_estatico_blog_loja_proxyreverso%2f" target="_blank" title="Share on Facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//reddit.com/submit?url=https%3a%2f%2f%2fnuvemdemetal.github.io%2fposts%2fsite_estatico_blog_loja_proxyreverso%2f&amp;title=Site%20est%c3%a1tico%2c%20Blog%2c%20Loja%20e%20Proxy%20reverso" target="_blank" title="Share on Reddit">
+          <i class="fab fa-reddit"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2f%2fnuvemdemetal.github.io%2fposts%2fsite_estatico_blog_loja_proxyreverso%2f&amp;title=Site%20est%c3%a1tico%2c%20Blog%2c%20Loja%20e%20Proxy%20reverso" target="_blank" title="Share on LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2f%2fnuvemdemetal.github.io%2fposts%2fsite_estatico_blog_loja_proxyreverso%2f&amp;title=Site%20est%c3%a1tico%2c%20Blog%2c%20Loja%20e%20Proxy%20reverso" target="_blank" title="Share on StumbleUpon">
+          <i class="fab fa-stumbleupon"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2f%2fnuvemdemetal.github.io%2fposts%2fsite_estatico_blog_loja_proxyreverso%2f&amp;description=Site%20est%c3%a1tico%2c%20Blog%2c%20Loja%20e%20Proxy%20reverso" target="_blank" title="Share on Pinterest">
+          <i class="fab fa-pinterest"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+  
+
+              </div>
+            </section>
+        
+
+        
+          
+            
+          
+
+          
+                  <h4 class="see-also">See also</h4>
+                  <ul>
+                
+                
+                    <li><a href="/nuvemdemetal.github.io/posts/clusterk8s_ansible_terraform_shellscript/">Subindo cluster k8s com Ansible, Terraform e Shell Script</a></li>
+                
+                    <li><a href="/nuvemdemetal.github.io/posts/roteamento_de_requisicoes_com_istio/">Roteamento de requisições com Istio</a></li>
+                
+              </ul>
+
+          
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https:///nuvemdemetal.github.io/posts/clusterk8s_ansible_terraform_shellscript/" data-toggle="tooltip" data-placement="top" title="Subindo cluster k8s com Ansible, Terraform e Shell Script">&larr; Previous Post</a>
+            </li>
+          
+          
+        </ul>
+      
+
+
+      
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+      
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:barbosa@nuvemdemetal.com.br" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/heldobarbosa" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://open.spotify.com/user/helldo6543" title="Spotify">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-spotify fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              Heldo Barbosa
+            
+          
+
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2021
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https:///nuvemdemetal.github.io">MetalHead</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="https:///nuvemdemetal.github.io/js/main.js"></script>
+<script src="https:///nuvemdemetal.github.io/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https:///nuvemdemetal.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+</html>
+

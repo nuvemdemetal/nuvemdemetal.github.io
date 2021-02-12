@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>aws on MetalHead</title>
-    <link>https:///nuvemdemetal.github.io/tags/aws/</link>
-    <description>Recent content in aws on MetalHead</description>
+    <title>website on MetalHead</title>
+    <link>https:///nuvemdemetal.github.io/tags/website/</link>
+    <description>Recent content in website on MetalHead</description>
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</managingEditor>
     <webMaster>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</webMaster>
     <lastBuildDate>Thu, 10 Dec 2020 10:44:41 -0300</lastBuildDate>
     
-	<atom:link href="https:///nuvemdemetal.github.io/tags/aws/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https:///nuvemdemetal.github.io/tags/website/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -21,16 +21,6 @@
       <description>Parte importante de toda automatização é entender como o processo funciona de forma manual. Aqui nós vamos contruir um Site estático, com um Blog (WordPress), uma loja (com Magento) e ainda configurar um proxy reverso.
 Estes são os passos:
 •	Criar um webserver centos7 na AWS •	Configurar uma loja com Magento •	Configurar um blog com WordPress •	Configurar o Tomcat •	Criar um site estático •	Criar um domínio e ajustar as entradas de DNS •	Criar certificado SSL wildcard</description>
-    </item>
-    
-    <item>
-      <title>Subindo cluster k8s com Ansible, Terraform e Shell Script</title>
-      <link>https:///nuvemdemetal.github.io/posts/clusterk8s_ansible_terraform_shellscript/</link>
-      <pubDate>Tue, 03 Nov 2020 17:05:17 -0300</pubDate>
-      <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
-      <guid>https:///nuvemdemetal.github.io/posts/clusterk8s_ansible_terraform_shellscript/</guid>
-      <description>Tive uma experiência ruim ao usar uma conta compartilhada da AWS para fazer laboratórios k8s. Mesmo atendendo a todos os padrões de TAGS e tudo mais insistiam em apagar meu Cluster. Eu decidi então direcionar a raiva para uma coisa boa e com a alta do dólar foi realmente totalmente excelente subir e destruir meu cluster a hora que eu quiser em minha própria conta.
-Entre os colegas mais pŕoximos não encontrei nada 100% automatizado.</description>
     </item>
     
   </channel>

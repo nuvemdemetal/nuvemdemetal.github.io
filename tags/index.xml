@@ -7,24 +7,15 @@
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</managingEditor>
     <webMaster>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</webMaster>
-    <lastBuildDate>Tue, 03 Nov 2020 17:05:17 -0300</lastBuildDate>
+    <lastBuildDate>Thu, 10 Dec 2020 10:44:41 -0300</lastBuildDate>
     
 	<atom:link href="https:///nuvemdemetal.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>ansible</title>
-      <link>https:///nuvemdemetal.github.io/tags/ansible/</link>
-      <pubDate>Tue, 03 Nov 2020 17:05:17 -0300</pubDate>
-      <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
-      <guid>https:///nuvemdemetal.github.io/tags/ansible/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>aws</title>
       <link>https:///nuvemdemetal.github.io/tags/aws/</link>
-      <pubDate>Tue, 03 Nov 2020 17:05:17 -0300</pubDate>
+      <pubDate>Thu, 10 Dec 2020 10:44:41 -0300</pubDate>
       <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
       <guid>https:///nuvemdemetal.github.io/tags/aws/</guid>
       <description></description>
@@ -33,9 +24,99 @@
     <item>
       <title>cloud</title>
       <link>https:///nuvemdemetal.github.io/tags/cloud/</link>
-      <pubDate>Tue, 03 Nov 2020 17:05:17 -0300</pubDate>
+      <pubDate>Thu, 10 Dec 2020 10:44:41 -0300</pubDate>
       <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
       <guid>https:///nuvemdemetal.github.io/tags/cloud/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>devops</title>
+      <link>https:///nuvemdemetal.github.io/tags/devops/</link>
+      <pubDate>Thu, 10 Dec 2020 10:44:41 -0300</pubDate>
+      <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
+      <guid>https:///nuvemdemetal.github.io/tags/devops/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>magento</title>
+      <link>https:///nuvemdemetal.github.io/tags/magento/</link>
+      <pubDate>Thu, 10 Dec 2020 10:44:41 -0300</pubDate>
+      <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
+      <guid>https:///nuvemdemetal.github.io/tags/magento/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>metal</title>
+      <link>https:///nuvemdemetal.github.io/tags/metal/</link>
+      <pubDate>Thu, 10 Dec 2020 10:44:41 -0300</pubDate>
+      <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
+      <guid>https:///nuvemdemetal.github.io/tags/metal/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>nuvem</title>
+      <link>https:///nuvemdemetal.github.io/tags/nuvem/</link>
+      <pubDate>Thu, 10 Dec 2020 10:44:41 -0300</pubDate>
+      <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
+      <guid>https:///nuvemdemetal.github.io/tags/nuvem/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>nuvemdemetal</title>
+      <link>https:///nuvemdemetal.github.io/tags/nuvemdemetal/</link>
+      <pubDate>Thu, 10 Dec 2020 10:44:41 -0300</pubDate>
+      <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
+      <guid>https:///nuvemdemetal.github.io/tags/nuvemdemetal/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>proxy</title>
+      <link>https:///nuvemdemetal.github.io/tags/proxy/</link>
+      <pubDate>Thu, 10 Dec 2020 10:44:41 -0300</pubDate>
+      <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
+      <guid>https:///nuvemdemetal.github.io/tags/proxy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>reverseproxy</title>
+      <link>https:///nuvemdemetal.github.io/tags/reverseproxy/</link>
+      <pubDate>Thu, 10 Dec 2020 10:44:41 -0300</pubDate>
+      <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
+      <guid>https:///nuvemdemetal.github.io/tags/reverseproxy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>website</title>
+      <link>https:///nuvemdemetal.github.io/tags/website/</link>
+      <pubDate>Thu, 10 Dec 2020 10:44:41 -0300</pubDate>
+      <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
+      <guid>https:///nuvemdemetal.github.io/tags/website/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>wordpress</title>
+      <link>https:///nuvemdemetal.github.io/tags/wordpress/</link>
+      <pubDate>Thu, 10 Dec 2020 10:44:41 -0300</pubDate>
+      <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
+      <guid>https:///nuvemdemetal.github.io/tags/wordpress/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ansible</title>
+      <link>https:///nuvemdemetal.github.io/tags/ansible/</link>
+      <pubDate>Tue, 03 Nov 2020 17:05:17 -0300</pubDate>
+      <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
+      <guid>https:///nuvemdemetal.github.io/tags/ansible/</guid>
       <description></description>
     </item>
     
@@ -54,33 +135,6 @@
       <pubDate>Tue, 03 Nov 2020 17:05:17 -0300</pubDate>
       <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
       <guid>https:///nuvemdemetal.github.io/tags/kubernetes/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>metal</title>
-      <link>https:///nuvemdemetal.github.io/tags/metal/</link>
-      <pubDate>Tue, 03 Nov 2020 17:05:17 -0300</pubDate>
-      <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
-      <guid>https:///nuvemdemetal.github.io/tags/metal/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>nuvem</title>
-      <link>https:///nuvemdemetal.github.io/tags/nuvem/</link>
-      <pubDate>Tue, 03 Nov 2020 17:05:17 -0300</pubDate>
-      <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
-      <guid>https:///nuvemdemetal.github.io/tags/nuvem/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>nuvemdemetal</title>
-      <link>https:///nuvemdemetal.github.io/tags/nuvemdemetal/</link>
-      <pubDate>Tue, 03 Nov 2020 17:05:17 -0300</pubDate>
-      <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
-      <guid>https:///nuvemdemetal.github.io/tags/nuvemdemetal/</guid>
       <description></description>
     </item>
     

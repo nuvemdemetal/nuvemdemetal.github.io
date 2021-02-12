@@ -13,17 +13,77 @@
   </url>
   
   <url>
-    <loc>https:///nuvemdemetal.github.io/tags/ansible/</loc>
-    <lastmod>2020-11-03T17:05:17-03:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https:///nuvemdemetal.github.io/tags/aws/</loc>
-    <lastmod>2020-11-03T17:05:17-03:00</lastmod>
+    <lastmod>2020-12-10T10:44:41-03:00</lastmod>
   </url>
   
   <url>
     <loc>https:///nuvemdemetal.github.io/tags/cloud/</loc>
+    <lastmod>2020-12-10T10:44:41-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https:///nuvemdemetal.github.io/tags/devops/</loc>
+    <lastmod>2020-12-10T10:44:41-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https:///nuvemdemetal.github.io/tags/magento/</loc>
+    <lastmod>2020-12-10T10:44:41-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https:///nuvemdemetal.github.io/tags/metal/</loc>
+    <lastmod>2020-12-10T10:44:41-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https:///nuvemdemetal.github.io/tags/nuvem/</loc>
+    <lastmod>2020-12-10T10:44:41-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https:///nuvemdemetal.github.io/tags/nuvemdemetal/</loc>
+    <lastmod>2020-12-10T10:44:41-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https:///nuvemdemetal.github.io/posts/</loc>
+    <lastmod>2020-12-10T10:44:41-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https:///nuvemdemetal.github.io/tags/proxy/</loc>
+    <lastmod>2020-12-10T10:44:41-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https:///nuvemdemetal.github.io/tags/reverseproxy/</loc>
+    <lastmod>2020-12-10T10:44:41-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https:///nuvemdemetal.github.io/posts/site_estatico_blog_loja_proxyreverso/</loc>
+    <lastmod>2020-12-10T10:44:41-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https:///nuvemdemetal.github.io/tags/</loc>
+    <lastmod>2020-12-10T10:44:41-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https:///nuvemdemetal.github.io/tags/website/</loc>
+    <lastmod>2020-12-10T10:44:41-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https:///nuvemdemetal.github.io/tags/wordpress/</loc>
+    <lastmod>2020-12-10T10:44:41-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https:///nuvemdemetal.github.io/tags/ansible/</loc>
     <lastmod>2020-11-03T17:05:17-03:00</lastmod>
   </url>
   
@@ -38,37 +98,12 @@
   </url>
   
   <url>
-    <loc>https:///nuvemdemetal.github.io/tags/metal/</loc>
-    <lastmod>2020-11-03T17:05:17-03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https:///nuvemdemetal.github.io/tags/nuvem/</loc>
-    <lastmod>2020-11-03T17:05:17-03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https:///nuvemdemetal.github.io/tags/nuvemdemetal/</loc>
-    <lastmod>2020-11-03T17:05:17-03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https:///nuvemdemetal.github.io/posts/</loc>
-    <lastmod>2020-11-03T17:05:17-03:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https:///nuvemdemetal.github.io/tags/shellscript/</loc>
     <lastmod>2020-11-03T17:05:17-03:00</lastmod>
   </url>
   
   <url>
     <loc>https:///nuvemdemetal.github.io/posts/clusterk8s_ansible_terraform_shellscript/</loc>
-    <lastmod>2020-11-03T17:05:17-03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https:///nuvemdemetal.github.io/tags/</loc>
     <lastmod>2020-11-03T17:05:17-03:00</lastmod>
   </url>
   
