@@ -7,19 +7,10 @@
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</managingEditor>
     <webMaster>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</webMaster>
-    <lastBuildDate>Sat, 12 Dec 2020 12:56:14 -0300</lastBuildDate>
+    <lastBuildDate>Fri, 09 Oct 2020 16:56:19 -0300</lastBuildDate>
     
 	<atom:link href="https:///nuvemdemetal.com.br/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Cluster k8s com Terraform, Ansible e Shell</title>
-      <link>https:///nuvemdemetal.com.br/posts/clusterk8s_ansible_terraform_shellscript/</link>
-      <pubDate>Sat, 12 Dec 2020 12:56:14 -0300</pubDate>
-      <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
-      <guid>https:///nuvemdemetal.com.br/posts/clusterk8s_ansible_terraform_shellscript/</guid>
-      <description>title: &amp;ldquo;Subindo cluster k8s com Ansible, Terraform e Shell Script&amp;rdquo; date: 2020-11-03T17:05:17-03:00 draft: true tags: [k8s, kubernetes, ansible, terraform, shellscript, yaml, nuvem, nuvemdemetal, cloud, aws, metal] Tive uma experiência ruim ao usar uma conta compartilhada da AWS para fazer laboratórios k8s. Mesmo atendendo a todos os padrões de TAGS e tudo mais insistiam em apagar meu Cluster. Eu decidi então direcionar a raiva para uma coisa boa e com a alta do dólar foi realmente totalmente excelente subir e destruir meu cluster a hora que eu quiser em minha própria conta.</description>
-    </item>
     
     <item>
       <title>Roteamento de requisições com Istio</title>

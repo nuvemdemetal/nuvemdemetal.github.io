@@ -3,21 +3,6 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https:///nuvemdemetal.com.br/posts/clusterk8s_ansible_terraform_shellscript/</loc>
-    <lastmod>2020-12-12T12:56:14-03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https:///nuvemdemetal.com.br/</loc>
-    <lastmod>2020-12-12T12:56:14-03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https:///nuvemdemetal.com.br/posts/</loc>
-    <lastmod>2020-12-12T12:56:14-03:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https:///nuvemdemetal.com.br/tags/istio/</loc>
     <lastmod>2020-10-09T16:56:19-03:00</lastmod>
   </url>
@@ -48,12 +33,22 @@
   </url>
   
   <url>
+    <loc>https:///nuvemdemetal.com.br/</loc>
+    <lastmod>2020-10-09T16:56:19-03:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https:///nuvemdemetal.com.br/tags/nuvem/</loc>
     <lastmod>2020-10-09T16:56:19-03:00</lastmod>
   </url>
   
   <url>
     <loc>https:///nuvemdemetal.com.br/tags/nuvemdemetal/</loc>
+    <lastmod>2020-10-09T16:56:19-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https:///nuvemdemetal.com.br/posts/</loc>
     <lastmod>2020-10-09T16:56:19-03:00</lastmod>
   </url>
   
