@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</managingEditor>
     <webMaster>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</webMaster>
-    <lastBuildDate>Tue, 03 Nov 2020 17:05:17 -0300</lastBuildDate>
+    <lastBuildDate>Wed, 10 Feb 2021 16:53:59 -0300</lastBuildDate>
     
 	<atom:link href="https:///nuvemdemetal.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>About</title>
+      <link>https:///nuvemdemetal.github.io/about/</link>
+      <pubDate>Wed, 10 Feb 2021 16:53:59 -0300</pubDate>
+      <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
+      <guid>https:///nuvemdemetal.github.io/about/</guid>
+      <description>Heavy Metal (Ouça a playlist no Spotify)
+DevOps
+#LeadOnClimate</description>
+    </item>
     
     <item>
       <title>Subindo cluster k8s com Ansible, Terraform e Shell Script</title>
