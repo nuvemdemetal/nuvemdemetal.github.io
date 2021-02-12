@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Roteamento de requisições com Istio - MetalHead</title>
+  <meta name="description" content="O Istio é composto por uma malha de serviços, nele temos uma observabilidade completa da aplicação (com Kiali.. Jaeger..) e é possível limitar por exemplo, qual versão da aplicação quer expor, qual versão da aplicação o usuário X deve ter acesso e um monte de outras coisas mais.
+Presumo que tenha algum conhecimento de k8s e Service Mesh para continuar a leitura, mas se não tiver, não se preocupe, é simples entender o que está acontecendo aqui &gt; Para criar o acesso a determinada versão da aplicação primeiro é preciso criar um Destination Rule (Policy aplicada após o roteamento):">
+  <meta name="author" content="Heldo Barbosa"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "MetalHead",
+    
+    "url": "https:\/\/\/nuvemdemetal.github.io"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/\/nuvemdemetal.github.io"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/\/nuvemdemetal.github.io",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/\/nuvemdemetal.github.io\/posts\/roteamento_de_requisicoes_com_istio\/",
+          "name": "Roteamento de requisições com istio"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "Heldo Barbosa"
+  },
+  "headline": "Roteamento de requisições com Istio",
+  "description" : "O Istio é composto por uma malha de serviços, nele temos uma observabilidade completa da aplicação (com Kiali.. Jaeger..) e é possível limitar por exemplo, qual versão da aplicação quer expor, qual versão da aplicação o usuário X deve ter acesso e um monte de outras coisas mais.\nPresumo que tenha algum conhecimento de k8s e Service Mesh para continuar a leitura, mas se não tiver, não se preocupe, é simples entender o que está acontecendo aqui \x26gt; Para criar o acesso a determinada versão da aplicação primeiro é preciso criar um Destination Rule (Policy aplicada após o roteamento):",
+  "inLanguage" : "en",
+  "wordCount":  309 ,
+  "datePublished" : "2020-10-09T16:56:19",
+  "dateModified" : "2020-10-09T16:56:19",
+  "image" : "https:\/\/\/nuvemdemetal.github.io\/img\/heldochileantifa.png",
+  "keywords" : [ "k8s, kubernetes, yaml, istio, servicemesh, kiali, jaeger, nuvem, metal, nuvemdemetal" ],
+  "mainEntityOfPage" : "https:\/\/\/nuvemdemetal.github.io\/posts\/roteamento_de_requisicoes_com_istio\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/\/nuvemdemetal.github.io",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/\/nuvemdemetal.github.io\/img\/heldochileantifa.png",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="Roteamento de requisições com Istio" />
+<meta property="og:description" content="O Istio é composto por uma malha de serviços, nele temos uma observabilidade completa da aplicação (com Kiali.. Jaeger..) e é possível limitar por exemplo, qual versão da aplicação quer expor, qual versão da aplicação o usuário X deve ter acesso e um monte de outras coisas mais.
+Presumo que tenha algum conhecimento de k8s e Service Mesh para continuar a leitura, mas se não tiver, não se preocupe, é simples entender o que está acontecendo aqui &gt; Para criar o acesso a determinada versão da aplicação primeiro é preciso criar um Destination Rule (Policy aplicada após o roteamento):">
+<meta property="og:image" content="https:///nuvemdemetal.github.io/img/heldochileantifa.png" />
+<meta property="og:url" content="https:///nuvemdemetal.github.io/posts/roteamento_de_requisicoes_com_istio/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="MetalHead" />
+
+  <meta name="twitter:title" content="Roteamento de requisições com Istio" />
+  <meta name="twitter:description" content="O Istio é composto por uma malha de serviços, nele temos uma observabilidade completa da aplicação (com Kiali.. Jaeger..) e é possível limitar por exemplo, qual versão da aplicação quer expor, qual …">
+  <meta name="twitter:image" content="https:///nuvemdemetal.github.io/img/heldochileantifa.png" />
+  <meta name="twitter:card" content="summary" />
+  <link href='https:///nuvemdemetal.github.io/img/foto.ico' rel='icon' type='image/x-icon'/>
+  <meta name="generator" content="Hugo 0.68.3" />
+  <link rel="alternate" href="https:///nuvemdemetal.github.io/index.xml" type="application/rss+xml" title="MetalHead"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https:///nuvemdemetal.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https:///nuvemdemetal.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https:///nuvemdemetal.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https:///nuvemdemetal.github.io">MetalHead</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="linkedin" href="https://www.linkedin.com/in/heldobarbosa/">linkedin</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/nuvemdemetal.github.io/nuvemdemetal.github.io/about">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/nuvemdemetal.github.io/tags">Tags</a>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent">posts</a>
+              <div class="navlinks-children">
+                
+                  <a href="/nuvemdemetal.github.io/posts/site_estatico_blog_loja_proxyreverso/">Site estático, Blog, Loja e Proxy reverso</a>
+                
+                  <a href="/nuvemdemetal.github.io/posts/clusterk8s_ansible_terraform_shellscript/">Subindo cluster k8s com Ansible, Terraform e Shell Script</a>
+                
+                  <a href="/nuvemdemetal.github.io/posts/roteamento_de_requisicoes_com_istio/">Roteamento de requisições com Istio</a>
+                
+              </div>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+      <div class="avatar-container">
+        <div class="avatar-img-border">
+          <a title="MetalHead" href="https:///nuvemdemetal.github.io">
+            <img class="avatar-img" src="https:///nuvemdemetal.github.io/img/heldochileantifa.png" alt="MetalHead" />
+          </a>
+        </div>
+      </div>
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="posts-heading">
+              
+                <h1>Roteamento de requisições com Istio</h1>
+              
+              
+                <hr class="small">
+              
+              
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p>O Istio é composto por uma malha de serviços, nele temos uma observabilidade completa da aplicação (com Kiali.. Jaeger..) e é possível limitar por exemplo, qual versão da aplicação quer expor, qual versão da aplicação o usuário X deve ter acesso e um monte de outras coisas mais.</p>
+<p><img src="https://media.giphy.com/media/A3SXPrh6OrOc8/giphy.gif" alt=""></p>
+<p>Presumo que tenha algum conhecimento de k8s e Service Mesh para continuar a leitura, mas se não tiver, não se preocupe, é simples entender o que está acontecendo aqui &gt;
+Para criar o acesso a determinada versão da aplicação primeiro é preciso criar um Destination Rule (Policy aplicada após o roteamento):</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="k">apiVersion</span><span class="p">:</span><span class="w"> </span>networking.istio.io/v1alpha3<span class="w">
+</span><span class="w"></span><span class="k">kind</span><span class="p">:</span><span class="w"> </span>DestinationRule<span class="w">
+</span><span class="w"></span><span class="k">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>productpage<span class="w"> </span><span class="c">#nome do Destination Rule</span><span class="w">
+</span><span class="w"></span><span class="k">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">host</span><span class="p">:</span><span class="w"> </span>productpage<span class="w"> </span><span class="c">#serviço ao qual o Destination Rule está sendo criado</span><span class="w">
+</span><span class="w">  </span><span class="k">subsets</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>v1<span class="w">
+</span><span class="w">    </span><span class="k">labels</span><span class="p">:</span><span class="w"> </span><span class="c">#aqui é setado qual versão, este label irá lá para o deployment</span><span class="w">
+</span><span class="w">      </span><span class="k">version</span><span class="p">:</span><span class="w"> </span>v1<span class="w">
+</span><span class="w"></span>---<span class="w">
+</span><span class="w"></span><span class="k">apiVersion</span><span class="p">:</span><span class="w"> </span>networking.istio.io/v1alpha3<span class="w">
+</span><span class="w"></span><span class="k">kind</span><span class="p">:</span><span class="w"> </span>DestinationRule<span class="w">
+</span><span class="w"></span><span class="k">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>reviews<span class="w">
+</span><span class="w"></span><span class="k">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">host</span><span class="p">:</span><span class="w"> </span>reviews<span class="w">
+</span><span class="w">  </span><span class="k">subsets</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>v1<span class="w">
+</span><span class="w">    </span><span class="k">labels</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="k">version</span><span class="p">:</span><span class="w"> </span>v1<span class="w">
+</span><span class="w">  </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>v2<span class="w">
+</span><span class="w">    </span><span class="k">labels</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="k">version</span><span class="p">:</span><span class="w"> </span>v2<span class="w">
+</span><span class="w">  </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>v3<span class="w">
+</span><span class="w">    </span><span class="k">labels</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="k">version</span><span class="p">:</span><span class="w"> </span>v3<span class="w">
+</span><span class="w"></span>---<span class="w">
+</span><span class="w"></span><span class="k">apiVersion</span><span class="p">:</span><span class="w"> </span>networking.istio.io/v1alpha3<span class="w">
+</span><span class="w"></span><span class="k">kind</span><span class="p">:</span><span class="w"> </span>DestinationRule<span class="w">
+</span><span class="w"></span><span class="k">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>ratings<span class="w">
+</span><span class="w"></span><span class="k">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">host</span><span class="p">:</span><span class="w"> </span>ratings<span class="w">
+</span><span class="w">  </span><span class="k">subsets</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>v1<span class="w">
+</span><span class="w">    </span><span class="k">labels</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="k">version</span><span class="p">:</span><span class="w"> </span>v1<span class="w">
+</span><span class="w"></span>---<span class="w">
+</span><span class="w"></span><span class="k">apiVersion</span><span class="p">:</span><span class="w"> </span>networking.istio.io/v1alpha3<span class="w">
+</span><span class="w"></span><span class="k">kind</span><span class="p">:</span><span class="w"> </span>DestinationRule<span class="w">
+</span><span class="w"></span><span class="k">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>details<span class="w">
+</span><span class="w"></span><span class="k">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">host</span><span class="p">:</span><span class="w"> </span>details<span class="w">
+</span><span class="w">  </span><span class="k">subsets</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>v1<span class="w">
+</span><span class="w">    </span><span class="k">labels</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="k">version</span><span class="p">:</span><span class="w"> </span>v1<span class="w">
+</span></code></pre></div><p>No exemplo usei a aplicação bookinfo como base, que consiste em uma espécie de imdb para livros, baseada em Python, Java e NodeJS.</p>
+<p><img src="https://i.imgur.com/qtLJOUx.png" alt=""></p>
+<p>###Criando e deployando o Virtual Service:</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="k">apiVersion</span><span class="p">:</span><span class="w"> </span>networking.istio.io/v1alpha3<span class="w">
+</span><span class="w"></span><span class="k">kind</span><span class="p">:</span><span class="w"> </span>VirtualService<span class="w">
+</span><span class="w"></span><span class="k">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>productpage<span class="w">
+</span><span class="w"></span><span class="k">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">hosts</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- productpage<span class="w">
+</span><span class="w">  </span><span class="k">http</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="k">route</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="k">destination</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="k">host</span><span class="p">:</span><span class="w"> </span>productpage<span class="w">
+</span><span class="w">        </span><span class="k">subset</span><span class="p">:</span><span class="w"> </span>v1<span class="w"> </span><span class="c">#perceba que aqui definimos a versão 1 apenas*</span><span class="w">
+</span><span class="w"></span>---<span class="w">
+</span><span class="w"></span><span class="k">apiVersion</span><span class="p">:</span><span class="w"> </span>networking.istio.io/v1alpha3<span class="w">
+</span><span class="w"></span><span class="k">kind</span><span class="p">:</span><span class="w"> </span>VirtualService<span class="w">
+</span><span class="w"></span><span class="k">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>reviews<span class="w">
+</span><span class="w"></span><span class="k">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">hosts</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- reviews<span class="w">
+</span><span class="w">  </span><span class="k">http</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="k">route</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="k">destination</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="k">host</span><span class="p">:</span><span class="w"> </span>reviews<span class="w">
+</span><span class="w">        </span><span class="k">subset</span><span class="p">:</span><span class="w"> </span>v1<span class="w"> </span><span class="c">#*</span><span class="w">
+</span><span class="w"></span>---<span class="w">
+</span><span class="w"></span><span class="k">apiVersion</span><span class="p">:</span><span class="w"> </span>networking.istio.io/v1alpha3<span class="w">
+</span><span class="w"></span><span class="k">kind</span><span class="p">:</span><span class="w"> </span>VirtualService<span class="w">
+</span><span class="w"></span><span class="k">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>ratings<span class="w">
+</span><span class="w"></span><span class="k">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">hosts</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- ratings<span class="w">
+</span><span class="w">  </span><span class="k">http</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="k">route</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="k">destination</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="k">host</span><span class="p">:</span><span class="w"> </span>ratings<span class="w">
+</span><span class="w">        </span><span class="k">subset</span><span class="p">:</span><span class="w"> </span>v1<span class="w"> </span><span class="c">#*</span><span class="w">
+</span><span class="w"></span>---<span class="w">
+</span><span class="w"></span><span class="k">apiVersion</span><span class="p">:</span><span class="w"> </span>networking.istio.io/v1alpha3<span class="w">
+</span><span class="w"></span><span class="k">kind</span><span class="p">:</span><span class="w"> </span>VirtualService<span class="w">
+</span><span class="w"></span><span class="k">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>details<span class="w">
+</span><span class="w"></span><span class="k">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">hosts</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- details<span class="w">
+</span><span class="w">  </span><span class="k">http</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="k">route</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="k">destination</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="k">host</span><span class="p">:</span><span class="w"> </span>details<span class="w">
+</span><span class="w">        </span><span class="k">subset</span><span class="p">:</span><span class="w"> </span>v1<span class="w"> </span><span class="c">#*</span><span class="w">
+</span></code></pre></div><p>No VirtualService definimos a lista de rotas para o Envoy lidar com as requisições para cada serviço.</p>
+<p><img src="https://i.imgur.com/K5OMtPd.png" alt=""></p>
+<p>Depois de fazer requisições na página da aplicação, no Kiali é possível observar que a rota requisitada foi roteada para a v1 da aplicação apenas:</p>
+<p><img src="https://media.giphy.com/media/JrYveC1VAHsMMIlWfG/giphy.gif" alt=""></p>
+<p>Para criar uma rota para determinado usuário:</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="k">apiVersion</span><span class="p">:</span><span class="w"> </span>networking.istio.io/v1alpha3<span class="w">
+</span><span class="w"></span><span class="k">kind</span><span class="p">:</span><span class="w"> </span>VirtualService<span class="w">
+</span><span class="w"></span><span class="k">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>reviews<span class="w">
+</span><span class="w"></span><span class="k">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">hosts</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- reviews<span class="w">
+</span><span class="w">  </span><span class="k">http</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="k">match: #Faz o match com a info no header</span><span class="p">:</span><span class="w"> </span>end-user<span class="w">
+</span><span class="w">    </span>- <span class="k">headers</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="k">end-user</span><span class="p">:</span><span class="w"> </span><span class="c"># &lt;&lt;&lt;</span><span class="w">
+</span><span class="w">          </span><span class="k">exact</span><span class="p">:</span><span class="w"> </span>barbosa<span class="w"> </span><span class="c">#o user barbosa vai rotear a requisição como destino a reviews v2 </span><span class="w">
+</span><span class="w">    </span><span class="k">route</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="k">destination</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="k">host</span><span class="p">:</span><span class="w"> </span>reviews<span class="w">
+</span><span class="w">        </span><span class="k">subset</span><span class="p">:</span><span class="w"> </span>v2<span class="w">
+</span><span class="w">  </span>- <span class="k">route</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="k">destination</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="k">host</span><span class="p">:</span><span class="w"> </span>reviews<span class="w">
+</span><span class="w">        </span><span class="k">subset</span><span class="p">:</span><span class="w"> </span>v1<span class="w">
+</span></code></pre></div><p><img src="https://i.imgur.com/CXMs5jw.png" alt=""></p>
+<p>Logado na página da aplicação com meu usuário (barbosa) fiz alguns requests e de forma muito simples visualizei o roteamento como configurado no YAML :</p>
+<p><img src="https://media4.giphy.com/media/YPu0jG3AMEQkQL8JuG/giphy.gif" alt=""></p>
+<p>Quer fazer aquele teste de carga na sua aplicação sem impacto no seu ambiente? É possível e de forma muito simples, desde que conheça redes, k8s e saiba brincar um pouco com YAML.</p>
+
+
+        
+          <div class="blog-tags">
+            
+              <a href="https:///nuvemdemetal.github.io/tags/k8s/">k8s</a>&nbsp;
+            
+              <a href="https:///nuvemdemetal.github.io/tags/kubernetes/">kubernetes</a>&nbsp;
+            
+              <a href="https:///nuvemdemetal.github.io/tags/yaml/">yaml</a>&nbsp;
+            
+              <a href="https:///nuvemdemetal.github.io/tags/istio/">istio</a>&nbsp;
+            
+              <a href="https:///nuvemdemetal.github.io/tags/servicemesh/">servicemesh</a>&nbsp;
+            
+              <a href="https:///nuvemdemetal.github.io/tags/kiali/">kiali</a>&nbsp;
+            
+              <a href="https:///nuvemdemetal.github.io/tags/jaeger/">jaeger</a>&nbsp;
+            
+              <a href="https:///nuvemdemetal.github.io/tags/nuvem/">nuvem</a>&nbsp;
+            
+              <a href="https:///nuvemdemetal.github.io/tags/metal/">metal</a>&nbsp;
+            
+              <a href="https:///nuvemdemetal.github.io/tags/nuvemdemetal/">nuvemdemetal</a>&nbsp;
+            
+          </div>
+        
+
+        
+            <hr/>
+            <section id="social-share">
+              <div class="list-inline footer-links">
+                
+
+<div class="share-box" aria-hidden="true">
+    <ul class="share">
+      
+      <li>
+        <a href="//twitter.com/share?url=https%3a%2f%2f%2fnuvemdemetal.github.io%2fposts%2froteamento_de_requisicoes_com_istio%2f&amp;text=Roteamento%20de%20requisi%c3%a7%c3%b5es%20com%20Istio&amp;via=" target="_blank" title="Share on Twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2f%2fnuvemdemetal.github.io%2fposts%2froteamento_de_requisicoes_com_istio%2f" target="_blank" title="Share on Facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//reddit.com/submit?url=https%3a%2f%2f%2fnuvemdemetal.github.io%2fposts%2froteamento_de_requisicoes_com_istio%2f&amp;title=Roteamento%20de%20requisi%c3%a7%c3%b5es%20com%20Istio" target="_blank" title="Share on Reddit">
+          <i class="fab fa-reddit"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2f%2fnuvemdemetal.github.io%2fposts%2froteamento_de_requisicoes_com_istio%2f&amp;title=Roteamento%20de%20requisi%c3%a7%c3%b5es%20com%20Istio" target="_blank" title="Share on LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2f%2fnuvemdemetal.github.io%2fposts%2froteamento_de_requisicoes_com_istio%2f&amp;title=Roteamento%20de%20requisi%c3%a7%c3%b5es%20com%20Istio" target="_blank" title="Share on StumbleUpon">
+          <i class="fab fa-stumbleupon"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2f%2fnuvemdemetal.github.io%2fposts%2froteamento_de_requisicoes_com_istio%2f&amp;description=Roteamento%20de%20requisi%c3%a7%c3%b5es%20com%20Istio" target="_blank" title="Share on Pinterest">
+          <i class="fab fa-pinterest"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+  
+
+              </div>
+            </section>
+        
+
+        
+          
+
+          
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+          
+            <li class="next">
+              <a href="https:///nuvemdemetal.github.io/posts/clusterk8s_ansible_terraform_shellscript/" data-toggle="tooltip" data-placement="top" title="Clusterk8s_ansible_terraform_shellscript">Next Post &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+      
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:barbosa@nuvemdemetal.com.br" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/nuvemdemetal" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/heldobarbosa" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://open.spotify.com/user/helldo6543" title="Spotify">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-spotify fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              <a href="nuvemdemetal.com.br">Heldo Barbosa</a>
+            
+          
+
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2021
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https:///nuvemdemetal.github.io">MetalHead</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="https:///nuvemdemetal.github.io/js/main.js"></script>
+<script src="https:///nuvemdemetal.github.io/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https:///nuvemdemetal.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+</html>
+
