@@ -2,13 +2,13 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>MetalHead</title>
-    <link>https://username.github.io/</link>
+    <link>https:///nuvemdemetal.github.io/</link>
     <description>Recent content on MetalHead</description>
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</managingEditor>
     <webMaster>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</webMaster>
     
-	<atom:link href="https://username.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https:///nuvemdemetal.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>
