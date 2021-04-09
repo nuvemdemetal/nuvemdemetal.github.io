@@ -10,7 +10,7 @@
   <title>Terraform Cloud - MetalHead</title>
   <meta name="description" content="O Terraform Cloud é uma ferramenta nativa da Hashicorp usada para facilitar o CI/CD de ambientes com o Terraform.
 Benefícios:
-1. Não se preocupe com instalação ou plugins, o Terraform Cloud se encarrega de apenas rodar seu código. 2. É possível avançar na criação e gerencia dos ambientes de forma auditável com o VCS. 3. Através do VCS (Uso Github) integrado é possível manter controle de versão do código. 4. Oferece segurança para dados sensíveis como o tstate.">
+ Não se preocupe com instalação ou plugins, o Terraform Cloud se encarrega de apenas rodar seu código. É possível avançar na criação e gerencia dos ambientes de forma auditável com o VCS. Através do VCS (Uso Github) integrado é possível manter controle de versão do código. Oferece segurança para dados sensíveis como o tstate.">
   <meta name="author" content="Heldo Barbosa"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -59,9 +59,9 @@ Benefícios:
     "name" : "Heldo Barbosa"
   },
   "headline": "Terraform Cloud",
-  "description" : "O Terraform Cloud é uma ferramenta nativa da Hashicorp usada para facilitar o CI\/CD de ambientes com o Terraform.\nBenefícios:\n1. Não se preocupe com instalação ou plugins, o Terraform Cloud se encarrega de apenas rodar seu código. 2. É possível avançar na criação e gerencia dos ambientes de forma auditável com o VCS. 3. Através do VCS (Uso Github) integrado é possível manter controle de versão do código. 4. Oferece segurança para dados sensíveis como o tstate.",
+  "description" : "O Terraform Cloud é uma ferramenta nativa da Hashicorp usada para facilitar o CI\/CD de ambientes com o Terraform.\nBenefícios:\n Não se preocupe com instalação ou plugins, o Terraform Cloud se encarrega de apenas rodar seu código. É possível avançar na criação e gerencia dos ambientes de forma auditável com o VCS. Através do VCS (Uso Github) integrado é possível manter controle de versão do código. Oferece segurança para dados sensíveis como o tstate.",
   "inLanguage" : "en",
-  "wordCount":  559 ,
+  "wordCount":  557 ,
   "datePublished" : "2021-04-09T18:20:28",
   "dateModified" : "2021-04-09T18:20:28",
   "image" : "https:\/\/\/nuvemdemetal.github.io\/img\/heldochileantifa.png",
@@ -83,7 +83,7 @@ Benefícios:
 <meta property="og:title" content="Terraform Cloud" />
 <meta property="og:description" content="O Terraform Cloud é uma ferramenta nativa da Hashicorp usada para facilitar o CI/CD de ambientes com o Terraform.
 Benefícios:
-1. Não se preocupe com instalação ou plugins, o Terraform Cloud se encarrega de apenas rodar seu código. 2. É possível avançar na criação e gerencia dos ambientes de forma auditável com o VCS. 3. Através do VCS (Uso Github) integrado é possível manter controle de versão do código. 4. Oferece segurança para dados sensíveis como o tstate.">
+ Não se preocupe com instalação ou plugins, o Terraform Cloud se encarrega de apenas rodar seu código. É possível avançar na criação e gerencia dos ambientes de forma auditável com o VCS. Através do VCS (Uso Github) integrado é possível manter controle de versão do código. Oferece segurança para dados sensíveis como o tstate.">
 <meta property="og:image" content="https:///nuvemdemetal.github.io/img/heldochileantifa.png" />
 <meta property="og:url" content="https:///nuvemdemetal.github.io/posts/terraform_cloud/" />
 <meta property="og:type" content="website" />
@@ -92,7 +92,7 @@ Benefícios:
   <meta name="twitter:title" content="Terraform Cloud" />
   <meta name="twitter:description" content="O Terraform Cloud é uma ferramenta nativa da Hashicorp usada para facilitar o CI/CD de ambientes com o Terraform.
 Benefícios:
-1. Não se preocupe com instalação ou plugins, o Terraform Cloud se …">
+ Não se preocupe com instalação ou plugins, o Terraform Cloud se encarrega …">
   <meta name="twitter:image" content="https:///nuvemdemetal.github.io/img/heldochileantifa.png" />
   <meta name="twitter:card" content="summary" />
   <link href='https:///nuvemdemetal.github.io/img/foto.ico' rel='icon' type='image/x-icon'/>
@@ -269,10 +269,12 @@ Benefícios:
         <p><img src="https://i.imgur.com/EK2m7Lj.png" alt=""></p>
 <p>O Terraform Cloud é uma ferramenta nativa da Hashicorp usada para facilitar o CI/CD de ambientes com o Terraform.</p>
 <p><strong>Benefícios:</strong></p>
-<p><strong>1.</strong> Não se preocupe com instalação ou plugins, o Terraform Cloud se encarrega de apenas rodar seu código.
-<strong>2.</strong> É possível avançar na criação e gerencia dos ambientes de forma auditável com o VCS.
-<strong>3.</strong> Através do VCS (Uso Github) integrado é possível manter controle de versão do código.
-<strong>4.</strong> Oferece segurança para dados sensíveis como o tstate.tf, credenciais dos Cloud Providers e isenta uso de tabela no Mongo para Lock.</p>
+<ol>
+<li>Não se preocupe com instalação ou plugins, o Terraform Cloud se encarrega de apenas rodar seu código.</li>
+<li>É possível avançar na criação e gerencia dos ambientes de forma auditável com o VCS.</li>
+<li>Através do VCS (Uso Github) integrado é possível manter controle de versão do código.</li>
+<li>Oferece segurança para dados sensíveis como o tstate.tf, credenciais dos Cloud Providers e isenta uso de tabela no Mongo para Lock.</li>
+</ol>
 <h3 id="não-se-preocupe-com-instalação-ou-plugins-o-terraform-cloud-se-encarrega-de-apenas-rodar-seu-código">Não se preocupe com instalação ou plugins, o Terraform Cloud se encarrega de apenas rodar seu código.</h3>
 <p>Não é necessário fazer a instalação do Terraform localmente. Após fazer a integração do módulo Terraform de dentro do VCS na configuração da Workspace dentro do Terraform Cloud, é preciso rodar o código para subir a Infra apenas na primeira vez. É só clicar em dois botões e pronto, a ferramenta se encarrega das instalações necessárias de acordo com sua versão do Terraform para subir a Infra mostrando todo o log dentro da ferramenta. Para gerenciar a Infra criada à partir da segunda mudança o Terraform Cloud identifica que foi realizada mudança na Branch ou diretório dentro do repositório e fica em fase de &ldquo;plan&rdquo; aguardando aprovação do usuário para subir a mudança na Infra:</p>
 <p><strong>Queue Plan:</strong></p>
@@ -296,8 +298,8 @@ Benefícios:
 <a href="https://www.terraform.io/docs/modules/sources.html">https://www.terraform.io/docs/modules/sources.html</a>
 <a href="https://www.terraform.io/docs/state/sensitive-data.html">https://www.terraform.io/docs/state/sensitive-data.html</a></p>
 <p><strong>Ferramentas:</strong></p>
-<p>IaC: Terraform
-Cloud: AWS
+<p>IaC: Terraform <strong>//</strong>
+Cloud: AWS <strong>//</strong>
 PaaS: Terraform Cloud</p>
 
 
