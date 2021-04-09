@@ -8,6 +8,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
   <title>Terraform Cloud - MetalHead</title>
+  <meta name="description" content="O Terraform Cloud é uma ferramenta nativa da Hashicorp usada para facilitar o CI/CD de ambientes com o Terraform.
+Benefícios:
+ Não se preocupe com instalação ou plugins, o Terraform Cloud se encarrega de apenas rodar seu código. É possível avançar na criação e gerencia dos ambientes de forma auditável com o VCS. Através do VCS (Uso Github) integrado é possível manter controle de versão do código. Oferece segurança para dados sensíveis como o tstate.">
   <meta name="author" content="Heldo Barbosa"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -56,11 +59,11 @@
     "name" : "Heldo Barbosa"
   },
   "headline": "Terraform Cloud",
-  "description" : "",
+  "description" : "O Terraform Cloud é uma ferramenta nativa da Hashicorp usada para facilitar o CI\/CD de ambientes com o Terraform.\nBenefícios:\n Não se preocupe com instalação ou plugins, o Terraform Cloud se encarrega de apenas rodar seu código. É possível avançar na criação e gerencia dos ambientes de forma auditável com o VCS. Através do VCS (Uso Github) integrado é possível manter controle de versão do código. Oferece segurança para dados sensíveis como o tstate.",
   "inLanguage" : "en",
-  "wordCount":  0 ,
-  "datePublished" : "2021-04-09T12:20:28",
-  "dateModified" : "2021-04-09T12:20:28",
+  "wordCount":  555 ,
+  "datePublished" : "2021-04-09T18:20:28",
+  "dateModified" : "2021-04-09T18:20:28",
   "image" : "https:\/\/\/nuvemdemetal.github.io\/img\/heldochileantifa.png",
   "keywords" : [ "" ],
   "mainEntityOfPage" : "https:\/\/\/nuvemdemetal.github.io\/posts\/terraform_cloud\/",
@@ -78,12 +81,18 @@
 </script>
 
 <meta property="og:title" content="Terraform Cloud" />
+<meta property="og:description" content="O Terraform Cloud é uma ferramenta nativa da Hashicorp usada para facilitar o CI/CD de ambientes com o Terraform.
+Benefícios:
+ Não se preocupe com instalação ou plugins, o Terraform Cloud se encarrega de apenas rodar seu código. É possível avançar na criação e gerencia dos ambientes de forma auditável com o VCS. Através do VCS (Uso Github) integrado é possível manter controle de versão do código. Oferece segurança para dados sensíveis como o tstate.">
 <meta property="og:image" content="https:///nuvemdemetal.github.io/img/heldochileantifa.png" />
 <meta property="og:url" content="https:///nuvemdemetal.github.io/posts/terraform_cloud/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="MetalHead" />
 
   <meta name="twitter:title" content="Terraform Cloud" />
+  <meta name="twitter:description" content="O Terraform Cloud é uma ferramenta nativa da Hashicorp usada para facilitar o CI/CD de ambientes com o Terraform.
+Benefícios:
+ Não se preocupe com instalação ou plugins, o Terraform Cloud se encarrega …">
   <meta name="twitter:image" content="https:///nuvemdemetal.github.io/img/heldochileantifa.png" />
   <meta name="twitter:card" content="summary" />
   <link href='https:///nuvemdemetal.github.io/img/foto.ico' rel='icon' type='image/x-icon'/>
@@ -257,7 +266,42 @@
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        
+        <p><img src="https://i.imgur.com/EK2m7Lj.png" alt=""></p>
+<p>O Terraform Cloud é uma ferramenta nativa da Hashicorp usada para facilitar o CI/CD de ambientes com o Terraform.</p>
+<p>Benefícios:</p>
+<ol>
+<li>Não se preocupe com instalação ou plugins, o Terraform Cloud se encarrega de apenas rodar seu código.</li>
+<li>É possível avançar na criação e gerencia dos ambientes de forma auditável com o VCS.</li>
+<li>Através do VCS (Uso Github) integrado é possível manter controle de versão do código.</li>
+<li>Oferece segurança para dados sensíveis como o tstate.tf, credenciais dos Cloud Providers e isenta uso de tabela no Mongo para Lock.</li>
+</ol>
+<p>Não se preocupe com instalação ou plugins, o Terraform Cloud se encarrega de apenas rodar seu código.</p>
+<p>Não é necessário fazer a instalação do Terraform localmente. Após fazer a integração do módulo Terraform de dentro do VCS na configuração da Workspace dentro do Terraform Cloud, é preciso rodar o código para subir a Infra apenas na primeira vez. É só clicar em dois botões e pronto, a ferramenta se encarrega das instalações necessárias de acordo com sua versão do Terraform para subir a Infra mostrando todo o log dentro da ferramenta. Para gerenciar a Infra criada à partir da segunda mudança o Terraform Cloud identifica que foi realizada mudança na Branch ou diretório dentro do repositório e fica em fase de &ldquo;plan&rdquo; aguardando aprovação do usuário para subir a mudança na Infra:</p>
+<p>Queue Plan:</p>
+<p><img src="https://i.imgur.com/r0za9Cq.jpg" alt=""></p>
+<p><img src="https://i.imgur.com/iiuEcIL.jpg" alt=""></p>
+<p>Confirm apply:</p>
+<p><img src="https://i.imgur.com/uXg0Qpc.jpg" alt=""></p>
+<p>É possível avançar na criação e gerencia dos ambientes de forma auditável com o VCS e Terraform Cloud.</p>
+<p>Como em todo projeto, é de boa prática padronizar um Workflow no VCS para fazer a gerência do código. Costumo usar o gitflow, trancar a branch Main a nível de administrador (evita qualquer acidente ainda que o Terraform Cloud fique em estado de plan após alteração na Branch Main do repo) e exigir o review de ao menos um membro do time + review do dono do código. Branches para trabalhar: (Main e Develop). Sempre que surgir alguma alteração a ser feita na Workspace é de boa prática criar uma nova Branch e deletar após o Merge, mas se você usa o gitflow sabe que ele faz isso por você ;)</p>
+<p>Sugiro também padronizar templates para Issues e Pull Requests. Isso evita longas discussões em torno do código.</p>
+<p><img src="https://i.imgur.com/vKXM3GF.jpg" alt=""></p>
+<p>Através do VCS (Uso Github) integrado é possível manter controle de versão do código.</p>
+<p>O controle de versão (feito na release) é importante para referenciar no módulo qual versão estará usando e assim fazer o reaproveitamento do código e poder voltar em determinados pontos da infraestrutura. O Terraform Cloud também oferece as versões do estado da Infra (tfstate.tf) a cada deploy feito, o que é muito bom também para realizar o troubleshooting e poder voltar ao estado da Infra caso alguma merda aconteça ;)</p>
+<p><img src="https://i.imgur.com/saGF4G3.jpg" alt=""></p>
+<p>Oferece segurança para dados sensíveis como o tstate.tf, credenciais dos Cloud Providers e isenta uso de tabela no Mongo para Lock.</p>
+<p>O tfstate.tf fica armazenado dentro de cada Workspace e existe um controle de versão deste tfstate.tf, algo que não acontece caso seja guardado remotamente (em um bucket S3 por exemplo) pois ele é reescrito todas as vezes. Além disso, como o código roda um por vez dentro da Workspace, não é preciso usar o Lock que é uma ação recomendada a usar quando o tfstate é guardado remotamente.</p>
+<p><img src="https://acegif.com/wp-content/gifs/spongebob-rainbow-1.gif" alt=""></p>
+<p>Referências:</p>
+<p><a href="https://www.hashicorp.com/resources/terraform-adoption-journey">https://www.hashicorp.com/resources/terraform-adoption-journey</a>
+<a href="https://www.terraform.io/docs/backends/types/index.html">https://www.terraform.io/docs/backends/types/index.html</a>
+<a href="https://www.terraform.io/docs/modules/sources.html">https://www.terraform.io/docs/modules/sources.html</a>
+<a href="https://www.terraform.io/docs/state/sensitive-data.html">https://www.terraform.io/docs/state/sensitive-data.html</a></p>
+<p>Ferramentas:</p>
+<p>IaC: Terraform
+Cloud: AWS
+PaaS: Terraform Cloud</p>
+
 
         
 

@@ -15,10 +15,12 @@
     <item>
       <title>Terraform Cloud</title>
       <link>https:///nuvemdemetal.github.io/posts/terraform_cloud/</link>
-      <pubDate>Fri, 09 Apr 2021 12:20:28 -0300</pubDate>
+      <pubDate>Fri, 09 Apr 2021 18:20:28 -0300</pubDate>
       <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
       <guid>https:///nuvemdemetal.github.io/posts/terraform_cloud/</guid>
-      <description></description>
+      <description>O Terraform Cloud é uma ferramenta nativa da Hashicorp usada para facilitar o CI/CD de ambientes com o Terraform.
+Benefícios:
+ Não se preocupe com instalação ou plugins, o Terraform Cloud se encarrega de apenas rodar seu código. É possível avançar na criação e gerencia dos ambientes de forma auditável com o VCS. Através do VCS (Uso Github) integrado é possível manter controle de versão do código. Oferece segurança para dados sensíveis como o tstate.</description>
     </item>
     
     <item>
