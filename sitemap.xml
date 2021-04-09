@@ -3,6 +3,16 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https:///nuvemdemetal.github.io/posts/</loc>
+    <lastmod>2021-04-09T12:20:28-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https:///nuvemdemetal.github.io/posts/terraform_cloud/</loc>
+    <lastmod>2021-04-09T12:20:28-03:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https:///nuvemdemetal.github.io/about/</loc>
     <lastmod>2021-02-10T16:53:59-03:00</lastmod>
   </url>
@@ -44,11 +54,6 @@
   
   <url>
     <loc>https:///nuvemdemetal.github.io/tags/nuvemdemetal/</loc>
-    <lastmod>2020-12-10T10:44:41-03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https:///nuvemdemetal.github.io/posts/</loc>
     <lastmod>2020-12-10T10:44:41-03:00</lastmod>
   </url>
   
