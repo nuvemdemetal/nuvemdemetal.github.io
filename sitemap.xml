@@ -38,6 +38,11 @@
   </url>
   
   <url>
+    <loc>https:///nuvemdemetal.github.io/posts/terraform_cloud/</loc>
+    <lastmod>2021-04-09T18:20:28-03:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https:///nuvemdemetal.github.io/tags/nuvem/</loc>
     <lastmod>2021-04-09T18:20:28-03:00</lastmod>
   </url>
@@ -59,11 +64,6 @@
   
   <url>
     <loc>https:///nuvemdemetal.github.io/tags/terraform/</loc>
-    <lastmod>2021-04-09T18:20:28-03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https:///nuvemdemetal.github.io/posts/terraform_cloud/</loc>
     <lastmod>2021-04-09T18:20:28-03:00</lastmod>
   </url>
   
