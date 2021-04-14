@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>terraform init // terraform plan // terraform apply - MetalHead</title>
+  <meta name="description" content="O Terraform trabalha basicamente através de regras de um arquivo de input. O binário do Terraform lê estes inputs, grava o estado das alterações em um arquivo (tfstate.tf) e empurra estas alterações para a Cloud:
+O tfstate é um &ldquo;banco de dados&rdquo; das suas alterações, ou seja, se rodar o mesmo arquivo de input e não houver nenhuma alteração, o binário do Terraform vai entender que de fato não há nenhuma alteração a ser feita.">
+  <meta name="author" content="Heldo Barbosa"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "MetalHead",
+    
+    "url": "https:\/\/\/nuvemdemetal.github.io"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/\/nuvemdemetal.github.io"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/\/nuvemdemetal.github.io",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/\/nuvemdemetal.github.io\/posts\/terraform_init\/",
+          "name": "Terraform init \/\/ terraform plan \/\/ terraform apply"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "Heldo Barbosa"
+  },
+  "headline": "terraform init \/\/ terraform plan \/\/ terraform apply",
+  "description" : "O Terraform trabalha basicamente através de regras de um arquivo de input. O binário do Terraform lê estes inputs, grava o estado das alterações em um arquivo (tfstate.tf) e empurra estas alterações para a Cloud:\nO tfstate é um \x26ldquo;banco de dados\x26rdquo; das suas alterações, ou seja, se rodar o mesmo arquivo de input e não houver nenhuma alteração, o binário do Terraform vai entender que de fato não há nenhuma alteração a ser feita.",
+  "inLanguage" : "en",
+  "wordCount":  761 ,
+  "datePublished" : "2021-04-14T18:03:42",
+  "dateModified" : "2021-04-14T18:03:42",
+  "image" : "https:\/\/\/nuvemdemetal.github.io\/img\/heldochileantifa.png",
+  "keywords" : [ "" ],
+  "mainEntityOfPage" : "https:\/\/\/nuvemdemetal.github.io\/posts\/terraform_init\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/\/nuvemdemetal.github.io",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/\/nuvemdemetal.github.io\/img\/heldochileantifa.png",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="terraform init // terraform plan // terraform apply" />
+<meta property="og:description" content="O Terraform trabalha basicamente através de regras de um arquivo de input. O binário do Terraform lê estes inputs, grava o estado das alterações em um arquivo (tfstate.tf) e empurra estas alterações para a Cloud:
+O tfstate é um &ldquo;banco de dados&rdquo; das suas alterações, ou seja, se rodar o mesmo arquivo de input e não houver nenhuma alteração, o binário do Terraform vai entender que de fato não há nenhuma alteração a ser feita.">
+<meta property="og:image" content="https:///nuvemdemetal.github.io/img/heldochileantifa.png" />
+<meta property="og:url" content="https:///nuvemdemetal.github.io/posts/terraform_init/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="MetalHead" />
+
+  <meta name="twitter:title" content="terraform init // terraform plan // terraform apply" />
+  <meta name="twitter:description" content="O Terraform trabalha basicamente através de regras de um arquivo de input. O binário do Terraform lê estes inputs, grava o estado das alterações em um arquivo (tfstate.tf) e empurra estas alterações …">
+  <meta name="twitter:image" content="https:///nuvemdemetal.github.io/img/heldochileantifa.png" />
+  <meta name="twitter:card" content="summary" />
+  <link href='https:///nuvemdemetal.github.io/img/foto.ico' rel='icon' type='image/x-icon'/>
+  <meta name="generator" content="Hugo 0.68.3" />
+  <link rel="alternate" href="https:///nuvemdemetal.github.io/index.xml" type="application/rss+xml" title="MetalHead"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https:///nuvemdemetal.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https:///nuvemdemetal.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https:///nuvemdemetal.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https:///nuvemdemetal.github.io">MetalHead</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="linkedin" href="https://www.linkedin.com/in/heldobarbosa/">linkedin</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/nuvemdemetal.github.io/nuvemdemetal.github.io/about">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/nuvemdemetal.github.io/tags">Tags</a>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent">posts</a>
+              <div class="navlinks-children">
+                
+                  <a href="/nuvemdemetal.github.io/posts/terraform_cloud/">Minha experiência com Terraform Cloud</a>
+                
+                  <a href="/nuvemdemetal.github.io/posts/site_estatico_blog_loja_proxyreverso/">Site estático, Blog, Loja e Proxy reverso</a>
+                
+                  <a href="/nuvemdemetal.github.io/posts/clusterk8s_ansible_terraform_shellscript/">Subindo cluster k8s com Ansible, Terraform e Shell Script</a>
+                
+                  <a href="/nuvemdemetal.github.io/posts/roteamento_de_requisicoes_com_istio/">Roteamento de requisições com Istio</a>
+                
+              </div>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+      <div class="avatar-container">
+        <div class="avatar-img-border">
+          <a title="MetalHead" href="https:///nuvemdemetal.github.io">
+            <img class="avatar-img" src="https:///nuvemdemetal.github.io/img/heldochileantifa.png" alt="MetalHead" />
+          </a>
+        </div>
+      </div>
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="posts-heading">
+              
+                <h1>terraform init // terraform plan // terraform apply</h1>
+              
+              
+                <hr class="small">
+              
+              
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p>O Terraform trabalha basicamente através de regras de um arquivo de input. O binário do Terraform lê estes inputs, grava o estado das alterações em um arquivo (tfstate.tf) e empurra estas alterações para a Cloud:</p>
+<p><img src="https://i.imgur.com/HtFTAgW.jpg" alt=""></p>
+<p>O tfstate é um &ldquo;banco de dados&rdquo; das suas alterações, ou seja, se rodar o mesmo arquivo de input e não houver nenhuma alteração, o binário do Terraform vai entender que de fato não há nenhuma alteração a ser feita. Se houver, o arquivo tfstate.tf é alterado e as alterações vão parar em sua nuvem.</p>
+<p><img src="https://site.guiainvest.com.br/wp-content/uploads/2016/12/seu-madruga-7.gif" alt=""></p>
+<p>O Terraform se comunica com a Cloud através da API, que é basicamente um software com parâmetros que permitem que a comunicação seja feita entre os dois. Um exemplo disso é o próprio Console AWS, que é um painel bonitão que por baixo dos panos trabalha com uma API, então cada botão da plataforma tem um parâmetro que leva a uma ação lá na Nuvem AWS.</p>
+<p><img src="https://i.imgur.com/67Pl25O.jpg" alt=""></p>
+<h2 id="segurança-do-estado-das-alterações">Segurança do estado das alterações</h2>
+<p>É de boa prática manter o estado das alterações em local protegido, geralmente no início é muito comum manter este estado localmente, mas o Terraform dá a opção de manter este arquivo em um Bucket S3* que permite que você use a segurança da Cloud (IAM*) para manter este arquivo criptografado, além de permitir também que um time use o mesmo arquivo de estado de forma compartilhada.</p>
+<p>Para guardar o arquivo de estado remotamente na AWS é preciso ter um Bucket S3 sem fírula (com acesso público bloqueado).</p>
+<p>Para acesso do Terraform para a Cloud um usuário do IAM com acesso programático e política de acesso de administrador.</p>
+<h2 id="argumentos-blocos-e-identificadores">Argumentos, blocos e identificadores</h2>
+<p>O bloco tem chaves &ldquo;{}&rdquo; no começo e no fim. No exemplo temos por exemplo o bloco provider ;)</p>
+<div class="highlight"><pre class="chroma"><code class="language-yml" data-lang="yml">resource<span class="w"> </span><span class="s2">&#34;aws_instance&#34;</span><span class="w"> </span><span class="s2">&#34;example&#34;</span><span class="w"> </span>{<span class="w">
+</span><span class="w">  </span>ami<span class="w"> </span>=<span class="w"> </span><span class="s2">&#34;abc123&#34;</span><span class="w">
+</span><span class="w">
+</span><span class="w">  </span>network_interface<span class="w"> </span>{<span class="w">
+</span><span class="w">    </span><span class="c"># ...</span><span class="w">
+</span><span class="w">  </span>}<span class="w">
+</span><span class="w"></span>}<span class="w">
+</span><span class="w">
+</span><span class="w"></span>Neste<span class="w"> </span>exemplo<span class="w"> </span>temos<span class="w"> </span>um<span class="w"> </span>bloco<span class="w"> </span>do<span class="w"> </span>tipo<span class="w"> </span><span class="s2">&#34;aws_instance&#34;</span><span class="w"> </span>com<span class="w"> </span>o<span class="w"> </span>nome<span class="w"> </span><span class="s2">&#34;example&#34;</span>.<span class="w">
+</span><span class="w">
+</span><span class="w"></span>Já<span class="w"> </span>o<span class="w"> </span>argumento<span class="w"> </span>é<span class="w"> </span>tudo<span class="w"> </span>o<span class="w"> </span>que<span class="w"> </span>se<span class="w"> </span>configura<span class="w"> </span>dentro<span class="w"> </span>de<span class="w"> </span>um<span class="w"> </span>bloco<span class="p">,</span><span class="w"> </span>identificado<span class="w"> </span>sempre<span class="w"> </span>por<span class="w"> </span>um<span class="w"> </span>valor<span class="p">,</span><span class="w"> </span>então<span class="w"> </span>o<span class="w"> </span>argumento<span class="w"> </span><span class="s2">&#34;ami&#34;</span><span class="w"> </span>tem<span class="w"> </span>o<span class="w"> </span>valor<span class="w"> </span><span class="s2">&#34;abc123&#34;</span>.<span class="w"> 
+</span><span class="w">
+</span><span class="w"></span>E<span class="w"> </span>o<span class="w"> </span>identificador<span class="w"> </span>é<span class="w"> </span>o<span class="w"> </span>nome<span class="w"> </span>que<span class="w"> </span>você<span class="w"> </span>dá<span class="w"> </span>para<span class="w"> </span>identificar<span class="w"> </span>qualquer<span class="w"> </span>coisa.<span class="w"> 
+</span><span class="w">
+</span><span class="w"></span><span class="k">Mais informações</span><span class="p">:</span><span class="w"> </span>https<span class="p">:</span>//www.terraform.io/docs/language/syntax/configuration.html<span class="w">
+</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="c">## Código</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="c">### main.tf</span><span class="w">
+</span><span class="w"></span>```yml<span class="w">
+</span><span class="w"></span>provider<span class="w"> </span><span class="s2">&#34;aws&#34;</span><span class="w"> </span>{<span class="w">
+</span><span class="w">  </span>region<span class="w">  </span>=<span class="w"> </span><span class="s2">&#34;us-east-1&#34;</span><span class="w">
+</span><span class="w"></span>}<span class="w">
+</span><span class="w">
+</span><span class="w"></span>terraform<span class="w"> </span>{<span class="w">
+</span><span class="w">  </span>backend<span class="w"> </span><span class="s2">&#34;s3&#34;</span><span class="w"> </span>{<span class="w">
+</span><span class="w">    </span>bucket<span class="w"> </span>=<span class="w"> </span><span class="s2">&#34;nome_do_seu_bucket&#34;</span><span class="w">
+</span><span class="w">    </span>key<span class="w">    </span>=<span class="w"> </span><span class="s2">&#34;terraform.tfstate&#34;</span><span class="w">
+</span><span class="w">    </span>region<span class="w"> </span>=<span class="w"> </span><span class="s2">&#34;us-east-1&#34;</span><span class="w">
+</span><span class="w">  </span>}<span class="w">
+</span><span class="w"></span>}<span class="w">
+</span></code></pre></div><h3 id="ec2tf">ec2.tf</h3>
+<div class="highlight"><pre class="chroma"><code class="language-yml" data-lang="yml">resource<span class="w"> </span><span class="s2">&#34;aws_instance&#34;</span><span class="w"> </span><span class="s2">&#34;web&#34;</span><span class="w"> </span>{<span class="w">
+</span><span class="w">  </span>ami<span class="w">           </span>=<span class="w"> </span><span class="s2">&#34;ami-0885b1f6bd170450c&#34;</span><span class="w">
+</span><span class="w">  </span>instance_type<span class="w"> </span>=<span class="w"> </span><span class="s2">&#34;t2.micro&#34;</span><span class="w">
+</span><span class="w">
+</span><span class="w">  </span>tags<span class="w"> </span>=<span class="w"> </span>{<span class="w">
+</span><span class="w">    </span>Name<span class="w"> </span>=<span class="w"> </span><span class="s2">&#34;HelloWorld&#34;</span><span class="w">
+</span><span class="w">  </span>}<span class="w">
+</span><span class="w"></span>}<span class="w">
+</span></code></pre></div><h2 id="maintf">main.tf</h2>
+<p>No bloco provider do tipo aws existem argumentos deste tipo de bloco, neste caso de código são dois: a região em que devem ser feitas as alterações na Cloud e a versão do plugin do Terraform.</p>
+<p>E no bloco terraform especificamos o backend do tipo S3, com o nome do arquivo dentro de &ldquo;key&rdquo; e a região em que o bucket deve ser procurado.</p>
+<h2 id="ec2tf-1">ec2.tf</h2>
+<p>No bloco resource do tipo aws_instance existem os argumentos ami e instance_type que vão caracterizar como será a instância. Além do bloco tags que é muito útil para taguear a instância como fazemos normalmente no console para fins de Billing e etc.</p>
+<h2 id="ubuntu--docker--terraform">Ubuntu + Docker + Terraform</h2>
+<p>Recomendado como boa prática na comunidade é o uso de um container para rodar o Terraform &ldquo;localmente&rdquo;, e como o Docker roda melhor no Ubuntu é de boa prática usar este SO. Então sugiro subir uma t2.micro (grátis) na AWS e com o arquivo acima salvo (main.tf) e instalação do Docker* feita rodar o seguinte comando:</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">docker run -it -v <span class="s2">&#34;/caminho/da_pasta/com_main.tf_em_sua_máquina&#34;</span>:/app -w /app --entrypoint <span class="s2">&#34;&#34;</span> hashicorp/terraform:light sh
+</code></pre></div><p>O container é indicado porque também é seguro para as chaves de segurança do usuário administrador do IAM. Estas chaves são necessárias para que a máquina, no caso o container, possa se comunicar via API com a AWS e fazer a criação, alteração e possa excluir as alterações propostas. É recomendado que se faça desta forma pois quando o container não existir mais, as chaves também não existirão. Para adicionar as chaves via varável de ambiente é muito simples:</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">export</span> <span class="nv">AWS_ACCESS_KEY_ID</span><span class="o">=(</span>valor da chave<span class="o">)</span>
+<span class="nb">export</span> <span class="nv">AWS_SECRET_ACCESS_KEY</span><span class="o">=(</span>valor da chave<span class="o">)</span>
+</code></pre></div><p>Com as chaves adicionadas no container, rode o seguinte comando:</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">terraform init
+</code></pre></div><p>Será feita a instalação do Terraform, será criada a pasta .terraform que contém tudo o que o binário do Terraform precisa para o <strong>plan</strong>, e será mapeado aonde será salvo o estado do Terraform:</p>
+<p><img src="https://i.imgur.com/z252dkU.jpeg" alt=""></p>
+<p><img src="https://i.imgur.com/uSJbjKm.jpg" alt=""></p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">terraform plan
+</code></pre></div><p>Será feito o plano de instalação. Aqui o Terraform vai checar inclusive a sintaxe nos arquivos e vai confirmar o que de fato será instalado:</p>
+<p><img src="https://i.imgur.com/8qpPimL.jpg" alt=""></p>
+<p>Os parâmetros setados no arquivo aparecem nesta fase, como o tipo da instancia e a ami. O restante não aparece porque de fato não foram setados e outros porque só aparecem após a criação do recurso (public ip, por exemplo).</p>
+<p>No final ele informa que para executar as ações é só rodar:</p>
+<p><img src="https://i.imgur.com/S1tzSmA.jpg" alt=""></p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">terraform apply
+</code></pre></div><p>Mas antes, de forma muito intuitiva ele ainda informa que para garantir que as mudanças sejam feitas conforme o <strong>terraform plan</strong> é de boa prática usar o complemento do comando: <strong>&quot;-out&rdquo;</strong>:</p>
+<p><img src="https://i.imgur.com/DC8aRq7.jpeg" alt=""></p>
+<p>Ele salva um arquivo binário de leitura do terraform que especifíca que estas alterações serão feitas e informa que para isso é preciso rodar o <strong>apply</strong> com o nome do arquivo.</p>
+<p>Confira o passo a passo no vídeo:</p>
+<p><img src="https://youtu.be/jY3OUrxqyDk" alt=""></p>
+<p>REFERÊNCIAS:</p>
+
+
+        
+
+        
+            <hr/>
+            <section id="social-share">
+              <div class="list-inline footer-links">
+                
+
+<div class="share-box" aria-hidden="true">
+    <ul class="share">
+      
+      <li>
+        <a href="//twitter.com/share?url=https%3a%2f%2f%2fnuvemdemetal.github.io%2fposts%2fterraform_init%2f&amp;text=terraform%20init%20%2f%2f%20terraform%20plan%20%2f%2f%20terraform%20apply&amp;via=" target="_blank" title="Share on Twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+  
+      
+      <li>
+        <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2f%2fnuvemdemetal.github.io%2fposts%2fterraform_init%2f&amp;title=terraform%20init%20%2f%2f%20terraform%20plan%20%2f%2f%20terraform%20apply" target="_blank" title="Share on LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+  
+
+              </div>
+            </section>
+        
+
+        
+          
+
+          
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https:///nuvemdemetal.github.io/posts/terraform_cloud/" data-toggle="tooltip" data-placement="top" title="Minha experiência com Terraform Cloud">&larr; Previous Post</a>
+            </li>
+          
+          
+        </ul>
+      
+
+
+      
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+      
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:barbosa@nuvemdemetal.com.br" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/heldobarbosa" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://open.spotify.com/user/helldo6543" title="Spotify">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-spotify fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              Heldo Barbosa
+            
+          
+
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2021
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https:///nuvemdemetal.github.io">MetalHead</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="https:///nuvemdemetal.github.io/js/main.js"></script>
+<script src="https:///nuvemdemetal.github.io/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https:///nuvemdemetal.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+</html>
+
