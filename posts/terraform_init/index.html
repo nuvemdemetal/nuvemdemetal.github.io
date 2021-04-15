@@ -274,7 +274,7 @@ O tfstate é um &ldquo;banco de dados&rdquo; das suas alterações, ou seja, se 
 <p>É de boa prática manter o estado das alterações em local protegido, geralmente no início é muito comum manter este estado localmente, mas o Terraform dá a opção de manter este arquivo em um Bucket S3* que permite que você use a segurança da Cloud (IAM*) para manter este arquivo criptografado, além de permitir também que um time use o mesmo arquivo de estado de forma compartilhada.</p>
 <p>Para guardar o arquivo de estado remotamente na AWS é preciso ter um Bucket S3 sem fírula (com acesso público bloqueado).</p>
 <p>Para acesso do Terraform para a Cloud um usuário do IAM com acesso programático e política de acesso de administrador.</p>
-<h2 id="argumentos-blocos-e-identificadores">Argumentos, blocos e identificadores</h2>
+<h1 id="argumentos-blocos-e-identificadores">Argumentos, blocos e identificadores</h1>
 <p>O bloco tem chaves &ldquo;{}&rdquo; no começo e no fim. No exemplo temos por exemplo o bloco provider ;)</p>
 <div class="highlight"><pre class="chroma"><code class="language-hcl" data-lang="hcl"><span class="k">resource</span> <span class="s2">&#34;aws_instance&#34; &#34;example&#34;</span> {
 <span class="n">  ami</span> <span class="o">=</span> <span class="s2">&#34;abc123&#34;</span>
@@ -287,8 +287,8 @@ O tfstate é um &ldquo;banco de dados&rdquo; das suas alterações, ou seja, se 
 <p>Já o argumento é tudo o que se configura dentro de um bloco, identificado sempre por um valor, então o argumento &ldquo;ami&rdquo; tem o valor &ldquo;abc123&rdquo;.</p>
 <p>E o identificador é o nome que você dá para identificar qualquer coisa.</p>
 <p>Mais informações: <a href="https://www.terraform.io/docs/language/syntax/configuration.html">https://www.terraform.io/docs/language/syntax/configuration.html</a></p>
-<h2 id="código">Código</h2>
-<h3 id="maintf">main.tf</h3>
+<h1 id="código">Código</h1>
+<h2 id="maintf">main.tf</h2>
 <div class="highlight"><pre class="chroma"><code class="language-hcl" data-lang="hcl"><span class="k">provider</span> <span class="s2">&#34;aws&#34;</span> {
 <span class="n">  region</span>  <span class="o">=</span> <span class="s2">&#34;us-east-1&#34;</span>
 }
@@ -300,7 +300,7 @@ O tfstate é um &ldquo;banco de dados&rdquo; das suas alterações, ou seja, se 
 <span class="n">    region</span> <span class="o">=</span> <span class="s2">&#34;us-east-1&#34;</span>
   }
 }
-</code></pre></div><h3 id="ec2tf">ec2.tf</h3>
+</code></pre></div><h2 id="ec2tf">ec2.tf</h2>
 <div class="highlight"><pre class="chroma"><code class="language-yml" data-lang="yml">resource<span class="w"> </span><span class="s2">&#34;aws_instance&#34;</span><span class="w"> </span><span class="s2">&#34;web&#34;</span><span class="w"> </span>{<span class="w">
 </span><span class="w">  </span>ami<span class="w">           </span>=<span class="w"> </span><span class="s2">&#34;ami-0885b1f6bd170450c&#34;</span><span class="w">
 </span><span class="w">  </span>instance_type<span class="w"> </span>=<span class="w"> </span><span class="s2">&#34;t2.micro&#34;</span><span class="w">
@@ -314,7 +314,7 @@ O tfstate é um &ldquo;banco de dados&rdquo; das suas alterações, ou seja, se 
 <p>E no bloco terraform especificamos o backend do tipo S3, com o nome do arquivo dentro de &ldquo;key&rdquo; e a região em que o bucket deve ser procurado.</p>
 <h2 id="ec2tf-1">ec2.tf</h2>
 <p>No bloco resource do tipo aws_instance existem os argumentos ami e instance_type que vão caracterizar como será a instância. Além do bloco tags que é muito útil para taguear a instância como fazemos normalmente no console para fins de Billing e etc.</p>
-<h2 id="ubuntu--docker--terraform">Ubuntu + Docker + Terraform</h2>
+<h1 id="ubuntu--docker--terraform">Ubuntu + Docker + Terraform</h1>
 <p>Recomendado como boa prática na comunidade é o uso de um container para rodar o Terraform &ldquo;localmente&rdquo;, e como o Docker roda melhor no Ubuntu é de boa prática usar este SO. Então sugiro subir uma t2.micro (grátis) na AWS e com o arquivo acima salvo (main.tf) e instalação do Docker* feita rodar o seguinte comando:</p>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">docker run -it -v <span class="s2">&#34;/caminho/da_pasta/com_main.tf_em_sua_máquina&#34;</span>:/app -w /app --entrypoint <span class="s2">&#34;&#34;</span> hashicorp/terraform:light sh
 </code></pre></div><p>O container é indicado porque também é seguro para as chaves de segurança do usuário administrador do IAM. Estas chaves são necessárias para que a máquina, no caso o container, possa se comunicar via API com a AWS e fazer a criação, alteração e possa excluir as alterações propostas. É recomendado que se faça desta forma pois quando o container não existir mais, as chaves também não existirão. Para adicionar as chaves via varável de ambiente é muito simples:</p>
