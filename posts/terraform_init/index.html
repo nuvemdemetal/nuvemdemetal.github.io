@@ -60,7 +60,7 @@ O tfstate é um &ldquo;banco de dados&rdquo; das suas alterações, ou seja, se 
   "headline": "terraform init \/\/ terraform plan \/\/ terraform apply",
   "description" : "O Terraform trabalha basicamente através de regras de um arquivo de input. O binário do Terraform lê estes inputs, grava o estado das alterações em um arquivo (tfstate.tf) e empurra estas alterações para a Cloud:\nO tfstate é um \x26ldquo;banco de dados\x26rdquo; das suas alterações, ou seja, se rodar o mesmo arquivo de input e não houver nenhuma alteração, o binário do Terraform vai entender que de fato não há nenhuma alteração a ser feita.",
   "inLanguage" : "en",
-  "wordCount":  876 ,
+  "wordCount":  872 ,
   "datePublished" : "2021-04-14T18:03:42",
   "dateModified" : "2021-04-14T18:03:42",
   "image" : "https:\/\/\/nuvemdemetal.github.io\/img\/heldochileantifa.png",
@@ -299,7 +299,9 @@ O tfstate é um &ldquo;banco de dados&rdquo; das suas alterações, ou seja, se 
 <span class="n">    region</span> <span class="o">=</span> <span class="s2">&#34;us-east-1&#34;</span>
   }
 }
-</code></pre></div><h2 id="ec2tf">ec2.tf</h2>
+</code></pre></div><p>No bloco <em>provider</em> do tipo aws existem argumentos deste tipo de bloco, no caso é a região identificada por <em>&ldquo;us-east-1&rdquo;</em></p>
+<p>E no bloco terraform especificamos o <em>backend</em> do tipo <em><strong>S3</strong></em>, com o nome do arquivo dentro de <em>&ldquo;key&rdquo;</em> e a região em que o bucket deve ser procurado.</p>
+<h2 id="ec2tf">ec2.tf</h2>
 <div class="highlight"><pre class="chroma"><code class="language-hcl" data-lang="hcl"><span class="k">resource</span> <span class="s2">&#34;aws_instance&#34; &#34;web&#34;</span> {
 <span class="n">  ami</span>           <span class="o">=</span> <span class="s2">&#34;ami-0885b1f6bd170450c&#34;</span>
 <span class="n">  instance_type</span> <span class="o">=</span> <span class="s2">&#34;t2.micro&#34;</span>
@@ -308,11 +310,7 @@ O tfstate é um &ldquo;banco de dados&rdquo; das suas alterações, ou seja, se 
 <span class="n">    Name</span> <span class="o">=</span> <span class="s2">&#34;HelloWorld&#34;</span>
   }
 }
-</code></pre></div><h2 id="maintf-">main.tf &lt;&gt;</h2>
-<p>No bloco <em>provider</em> do tipo aws existem argumentos deste tipo de bloco, no caso é a região identificada por <em>&ldquo;us-east-1&rdquo;</em></p>
-<p>E no bloco terraform especificamos o <em>backend</em> do tipo <em><strong>S3</strong></em>, com o nome do arquivo dentro de <em>&ldquo;key&rdquo;</em> e a região em que o bucket deve ser procurado.</p>
-<h2 id="ec2tf-">ec2.tf &lt;&gt;</h2>
-<p>No bloco resource do tipo aws_instance existem os argumentos <em>ami</em> e <em>instance_type</em> que vão caracterizar como será a instância. Além do bloco <em>tags</em> que é muito útil para taguear a instância como fazemos normalmente no console para fins de <em>Billing</em> e etc.</p>
+</code></pre></div><p>No bloco resource do tipo aws_instance existem os argumentos <em>ami</em> e <em>instance_type</em> que vão caracterizar como será a instância. Além do bloco <em>tags</em> que é muito útil para taguear a instância como fazemos normalmente no console para fins de <em>Billing</em> e etc.</p>
 <h1 id="ubuntu--docker--terraform">Ubuntu + Docker + Terraform</h1>
 <p>Recomendado como boa prática na comunidade é o uso de um container para rodar o Terraform &ldquo;localmente&rdquo;, e como o Docker roda melhor no Ubuntu é de boa prática usar este <em>SO</em>. Então sugiro subir uma <em>t2.micro</em> na AWS e com o arquivo acima salvo <em>(main.tf)</em> e instalação do Docker* feita rodar o seguinte comando:</p>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">docker run -it -v <span class="s2">&#34;/caminho/da_pasta/com_main.tf_em_sua_máquina&#34;</span>:/app -w /app --entrypoint <span class="s2">&#34;&#34;</span> hashicorp/terraform:light sh
