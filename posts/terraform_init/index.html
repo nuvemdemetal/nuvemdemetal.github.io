@@ -60,7 +60,7 @@ O tfstate é um &ldquo;banco de dados&rdquo; das suas alterações, ou seja, se 
   "headline": "terraform init \/\/ terraform plan \/\/ terraform apply",
   "description" : "O Terraform trabalha basicamente através de regras de um arquivo de input. O binário do Terraform lê estes inputs, grava o estado das alterações em um arquivo (tfstate.tf) e empurra estas alterações para a Cloud:\nO tfstate é um \x26ldquo;banco de dados\x26rdquo; das suas alterações, ou seja, se rodar o mesmo arquivo de input e não houver nenhuma alteração, o binário do Terraform vai entender que de fato não há nenhuma alteração a ser feita.",
   "inLanguage" : "en",
-  "wordCount":  760 ,
+  "wordCount":  847 ,
   "datePublished" : "2021-04-14T18:03:42",
   "dateModified" : "2021-04-14T18:03:42",
   "image" : "https:\/\/\/nuvemdemetal.github.io\/img\/heldochileantifa.png",
@@ -276,39 +276,31 @@ O tfstate é um &ldquo;banco de dados&rdquo; das suas alterações, ou seja, se 
 <p>Para acesso do Terraform para a Cloud um usuário do IAM com acesso programático e política de acesso de administrador.</p>
 <h2 id="argumentos-blocos-e-identificadores">Argumentos, blocos e identificadores</h2>
 <p>O bloco tem chaves &ldquo;{}&rdquo; no começo e no fim. No exemplo temos por exemplo o bloco provider ;)</p>
-<div class="highlight"><pre class="chroma"><code class="language-yml" data-lang="yml">resource<span class="w"> </span><span class="s2">&#34;aws_instance&#34;</span><span class="w"> </span><span class="s2">&#34;example&#34;</span><span class="w"> </span>{<span class="w">
-</span><span class="w">  </span>ami<span class="w"> </span>=<span class="w"> </span><span class="s2">&#34;abc123&#34;</span><span class="w">
-</span><span class="w">
-</span><span class="w">  </span>network_interface<span class="w"> </span>{<span class="w">
-</span><span class="w">    </span><span class="c"># ...</span><span class="w">
-</span><span class="w">  </span>}<span class="w">
-</span><span class="w"></span>}<span class="w">
-</span><span class="w">
-</span><span class="w"></span>Neste<span class="w"> </span>exemplo<span class="w"> </span>temos<span class="w"> </span>um<span class="w"> </span>bloco<span class="w"> </span>do<span class="w"> </span>tipo<span class="w"> </span><span class="s2">&#34;aws_instance&#34;</span><span class="w"> </span>com<span class="w"> </span>o<span class="w"> </span>nome<span class="w"> </span><span class="s2">&#34;example&#34;</span>.<span class="w">
-</span><span class="w">
-</span><span class="w"></span>Já<span class="w"> </span>o<span class="w"> </span>argumento<span class="w"> </span>é<span class="w"> </span>tudo<span class="w"> </span>o<span class="w"> </span>que<span class="w"> </span>se<span class="w"> </span>configura<span class="w"> </span>dentro<span class="w"> </span>de<span class="w"> </span>um<span class="w"> </span>bloco<span class="p">,</span><span class="w"> </span>identificado<span class="w"> </span>sempre<span class="w"> </span>por<span class="w"> </span>um<span class="w"> </span>valor<span class="p">,</span><span class="w"> </span>então<span class="w"> </span>o<span class="w"> </span>argumento<span class="w"> </span><span class="s2">&#34;ami&#34;</span><span class="w"> </span>tem<span class="w"> </span>o<span class="w"> </span>valor<span class="w"> </span><span class="s2">&#34;abc123&#34;</span>.<span class="w"> 
-</span><span class="w">
-</span><span class="w"></span>E<span class="w"> </span>o<span class="w"> </span>identificador<span class="w"> </span>é<span class="w"> </span>o<span class="w"> </span>nome<span class="w"> </span>que<span class="w"> </span>você<span class="w"> </span>dá<span class="w"> </span>para<span class="w"> </span>identificar<span class="w"> </span>qualquer<span class="w"> </span>coisa.<span class="w"> 
-</span><span class="w">
-</span><span class="w"></span><span class="k">Mais informações</span><span class="p">:</span><span class="w"> </span>https<span class="p">:</span>//www.terraform.io/docs/language/syntax/configuration.html<span class="w">
-</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="c">## Código</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="c">### main.tf</span><span class="w">
-</span><span class="w"></span>```yml<span class="w">
-</span><span class="w"></span>provider<span class="w"> </span><span class="s2">&#34;aws&#34;</span><span class="w"> </span>{<span class="w">
-</span><span class="w">  </span>region<span class="w">  </span>=<span class="w"> </span><span class="s2">&#34;us-east-1&#34;</span><span class="w">
-</span><span class="w"></span>}<span class="w">
-</span><span class="w">
-</span><span class="w"></span>terraform<span class="w"> </span>{<span class="w">
-</span><span class="w">  </span>backend<span class="w"> </span><span class="s2">&#34;s3&#34;</span><span class="w"> </span>{<span class="w">
-</span><span class="w">    </span>bucket<span class="w"> </span>=<span class="w"> </span><span class="s2">&#34;nome_do_seu_bucket&#34;</span><span class="w">
-</span><span class="w">    </span>key<span class="w">    </span>=<span class="w"> </span><span class="s2">&#34;terraform.tfstate&#34;</span><span class="w">
-</span><span class="w">    </span>region<span class="w"> </span>=<span class="w"> </span><span class="s2">&#34;us-east-1&#34;</span><span class="w">
-</span><span class="w">  </span>}<span class="w">
-</span><span class="w"></span>}<span class="w">
-</span></code></pre></div><h3 id="ec2tf">ec2.tf</h3>
+<div class="highlight"><pre class="chroma"><code class="language-hcl" data-lang="hcl"><span class="k">resource</span> <span class="s2">&#34;aws_instance&#34; &#34;example&#34;</span> {
+<span class="n">  ami</span> <span class="o">=</span> <span class="s2">&#34;abc123&#34;</span>
+
+  <span class="k">network_interface</span> {<span class="c1">
+</span><span class="c1">    # ...
+</span><span class="c1"></span>  }
+}
+</code></pre></div><p>Neste exemplo temos um bloco do tipo &ldquo;aws_instance&rdquo; com o nome &ldquo;example&rdquo;.</p>
+<p>Já o argumento é tudo o que se configura dentro de um bloco, identificado sempre por um valor, então o argumento &ldquo;ami&rdquo; tem o valor &ldquo;abc123&rdquo;.</p>
+<p>E o identificador é o nome que você dá para identificar qualquer coisa.</p>
+<p>Mais informações: <a href="https://www.terraform.io/docs/language/syntax/configuration.html">https://www.terraform.io/docs/language/syntax/configuration.html</a></p>
+<h2 id="código">Código</h2>
+<h3 id="maintf">main.tf</h3>
+<div class="highlight"><pre class="chroma"><code class="language-hcl" data-lang="hcl"><span class="k">provider</span> <span class="s2">&#34;aws&#34;</span> {
+<span class="n">  region</span>  <span class="o">=</span> <span class="s2">&#34;us-east-1&#34;</span>
+}
+
+<span class="k">terraform</span> {
+  <span class="k">backend</span> <span class="s2">&#34;s3&#34;</span> {
+<span class="n">    bucket</span> <span class="o">=</span> <span class="s2">&#34;nome_do_seu_bucket&#34;</span>
+<span class="n">    key</span>    <span class="o">=</span> <span class="s2">&#34;terraform.tfstate&#34;</span>
+<span class="n">    region</span> <span class="o">=</span> <span class="s2">&#34;us-east-1&#34;</span>
+  }
+}
+</code></pre></div><h3 id="ec2tf">ec2.tf</h3>
 <div class="highlight"><pre class="chroma"><code class="language-yml" data-lang="yml">resource<span class="w"> </span><span class="s2">&#34;aws_instance&#34;</span><span class="w"> </span><span class="s2">&#34;web&#34;</span><span class="w"> </span>{<span class="w">
 </span><span class="w">  </span>ami<span class="w">           </span>=<span class="w"> </span><span class="s2">&#34;ami-0885b1f6bd170450c&#34;</span><span class="w">
 </span><span class="w">  </span>instance_type<span class="w"> </span>=<span class="w"> </span><span class="s2">&#34;t2.micro&#34;</span><span class="w">
@@ -317,7 +309,7 @@ O tfstate é um &ldquo;banco de dados&rdquo; das suas alterações, ou seja, se 
 </span><span class="w">    </span>Name<span class="w"> </span>=<span class="w"> </span><span class="s2">&#34;HelloWorld&#34;</span><span class="w">
 </span><span class="w">  </span>}<span class="w">
 </span><span class="w"></span>}<span class="w">
-</span></code></pre></div><h2 id="maintf">main.tf</h2>
+</span></code></pre></div><h2 id="maintf-1">main.tf</h2>
 <p>No bloco provider do tipo aws existem argumentos deste tipo de bloco, neste caso de código são dois: a região em que devem ser feitas as alterações na Cloud e a versão do plugin do Terraform.</p>
 <p>E no bloco terraform especificamos o backend do tipo S3, com o nome do arquivo dentro de &ldquo;key&rdquo; e a região em que o bucket deve ser procurado.</p>
 <h2 id="ec2tf-1">ec2.tf</h2>
