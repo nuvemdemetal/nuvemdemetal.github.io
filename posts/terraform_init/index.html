@@ -60,7 +60,7 @@ O tfstate é um &ldquo;banco de dados&rdquo; das suas alterações, ou seja, se 
   "headline": "terraform init \/\/ terraform plan \/\/ terraform apply",
   "description" : "O Terraform trabalha basicamente através de regras de um arquivo de input. O binário do Terraform lê estes inputs, grava o estado das alterações em um arquivo (tfstate.tf) e empurra estas alterações para a Cloud:\nO tfstate é um \x26ldquo;banco de dados\x26rdquo; das suas alterações, ou seja, se rodar o mesmo arquivo de input e não houver nenhuma alteração, o binário do Terraform vai entender que de fato não há nenhuma alteração a ser feita.",
   "inLanguage" : "en",
-  "wordCount":  847 ,
+  "wordCount":  876 ,
   "datePublished" : "2021-04-14T18:03:42",
   "dateModified" : "2021-04-14T18:03:42",
   "image" : "https:\/\/\/nuvemdemetal.github.io\/img\/heldochileantifa.png",
@@ -264,18 +264,18 @@ O tfstate é um &ldquo;banco de dados&rdquo; das suas alterações, ou seja, se 
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        <p>O Terraform trabalha basicamente através de regras de um arquivo de input. O binário do Terraform lê estes inputs, grava o estado das alterações em um arquivo (tfstate.tf) e empurra estas alterações para a Cloud:</p>
+        <p>O Terraform trabalha basicamente através de regras de um arquivo de <em>input</em>. O binário do Terraform lê estes <em>inputs</em>, grava o estado das alterações em um arquivo <strong>(tfstate.tf)</strong> e empurra estas alterações para a Cloud:</p>
 <p><img src="https://i.imgur.com/HtFTAgW.jpg" alt=""></p>
-<p>O tfstate é um &ldquo;banco de dados&rdquo; das suas alterações, ou seja, se rodar o mesmo arquivo de input e não houver nenhuma alteração, o binário do Terraform vai entender que de fato não há nenhuma alteração a ser feita. Se houver, o arquivo tfstate.tf é alterado e as alterações vão parar em sua nuvem.</p>
+<p>O <em>tfstate</em> é um <strong>&ldquo;banco de dados&rdquo;</strong> das suas alterações, ou seja, se rodar o mesmo arquivo de <em>input</em> e não houver nenhuma alteração, o binário do Terraform vai entender que de fato não há nenhuma alteração a ser feita. Se houver, o arquivo <em>tfstate.tf</em> é alterado e as alterações vão parar em sua nuvem.</p>
 <p><img src="https://site.guiainvest.com.br/wp-content/uploads/2016/12/seu-madruga-7.gif" alt=""></p>
-<p>O Terraform se comunica com a Cloud através da API, que é basicamente um software com parâmetros que permitem que a comunicação seja feita entre os dois. Um exemplo disso é o próprio Console AWS, que é um painel bonitão que por baixo dos panos trabalha com uma API, então cada botão da plataforma tem um parâmetro que leva a uma ação lá na Nuvem AWS.</p>
+<p>O Terraform se comunica com a Cloud através da <em>API</em>, que é basicamente um software com parâmetros que permitem que a comunicação seja feita entre os dois <em>(Terraform e Cloud)</em>. Um exemplo disso é o próprio Console AWS, que é um painel <em>bonitão</em> que por baixo dos panos trabalha com uma <em>API</em>, então cada botão da plataforma tem um parâmetro que leva a uma ação lá na Nuvem AWS.</p>
 <p><img src="https://i.imgur.com/67Pl25O.jpg" alt=""></p>
-<h2 id="segurança-do-estado-das-alterações">Segurança do estado das alterações</h2>
-<p>É de boa prática manter o estado das alterações em local protegido, geralmente no início é muito comum manter este estado localmente, mas o Terraform dá a opção de manter este arquivo em um Bucket S3* que permite que você use a segurança da Cloud (IAM*) para manter este arquivo criptografado, além de permitir também que um time use o mesmo arquivo de estado de forma compartilhada.</p>
-<p>Para guardar o arquivo de estado remotamente na AWS é preciso ter um Bucket S3 sem fírula (com acesso público bloqueado).</p>
-<p>Para acesso do Terraform para a Cloud um usuário do IAM com acesso programático e política de acesso de administrador.</p>
-<h1 id="argumentos-blocos-e-identificadores">Argumentos, blocos e identificadores</h1>
-<p>O bloco tem chaves &ldquo;{}&rdquo; no começo e no fim. No exemplo temos por exemplo o bloco provider ;)</p>
+<h1 id="segurança-do-estado-das-alterações">Segurança do estado das alterações</h1>
+<p>É de boa prática manter o estado das alterações em local protegido, geralmente no início é muito comum manter este estado localmente, mas o Terraform dá a opção de manter este arquivo em um <em>Bucket S3</em> * que permite que você use a segurança da Cloud <em>(policy no IAM</em>)* para manter este arquivo criptografado, além de permitir também que um time use o mesmo arquivo de estado de forma compartilhada.</p>
+<p>Para guardar o arquivo de estado remotamente na AWS é preciso ter um Bucket S3 sem <em>fírula</em> (com acesso público bloqueado).</p>
+<p>Para acesso do Terraform para a Cloud um usuário do <em>IAM</em> com acesso programático e política de acesso de administrador.</p>
+<h1 id="argumentos-blocos-e-identificadores">Argumentos, blocos e identificadores*</h1>
+<p>O bloco tem chaves <em><strong>&quot;{ }&quot;</strong></em> no começo e no fim. No exemplo temos por exemplo o bloco provider:</p>
 <div class="highlight"><pre class="chroma"><code class="language-hcl" data-lang="hcl"><span class="k">resource</span> <span class="s2">&#34;aws_instance&#34; &#34;example&#34;</span> {
 <span class="n">  ami</span> <span class="o">=</span> <span class="s2">&#34;abc123&#34;</span>
 
@@ -283,10 +283,9 @@ O tfstate é um &ldquo;banco de dados&rdquo; das suas alterações, ou seja, se 
 </span><span class="c1">    # ...
 </span><span class="c1"></span>  }
 }
-</code></pre></div><p>Neste exemplo temos um bloco do tipo &ldquo;aws_instance&rdquo; com o nome &ldquo;example&rdquo;.</p>
-<p>Já o argumento é tudo o que se configura dentro de um bloco, identificado sempre por um valor, então o argumento &ldquo;ami&rdquo; tem o valor &ldquo;abc123&rdquo;.</p>
+</code></pre></div><p>Neste exemplo temos um bloco do tipo <strong>&ldquo;aws_instance&rdquo;</strong> com o nome <strong>&ldquo;example&rdquo;</strong>.</p>
+<p>Já o argumento é tudo o que se configura dentro de um bloco, identificado sempre por um valor, então o argumento <strong>&ldquo;ami&rdquo;</strong> tem o valor <strong>&ldquo;abc123&rdquo;</strong>.</p>
 <p>E o identificador é o nome que você dá para identificar qualquer coisa.</p>
-<p>Mais informações: <a href="https://www.terraform.io/docs/language/syntax/configuration.html">https://www.terraform.io/docs/language/syntax/configuration.html</a></p>
 <h1 id="código">Código</h1>
 <h2 id="maintf">main.tf</h2>
 <div class="highlight"><pre class="chroma"><code class="language-hcl" data-lang="hcl"><span class="k">provider</span> <span class="s2">&#34;aws&#34;</span> {
@@ -301,34 +300,34 @@ O tfstate é um &ldquo;banco de dados&rdquo; das suas alterações, ou seja, se 
   }
 }
 </code></pre></div><h2 id="ec2tf">ec2.tf</h2>
-<div class="highlight"><pre class="chroma"><code class="language-yml" data-lang="yml">resource<span class="w"> </span><span class="s2">&#34;aws_instance&#34;</span><span class="w"> </span><span class="s2">&#34;web&#34;</span><span class="w"> </span>{<span class="w">
-</span><span class="w">  </span>ami<span class="w">           </span>=<span class="w"> </span><span class="s2">&#34;ami-0885b1f6bd170450c&#34;</span><span class="w">
-</span><span class="w">  </span>instance_type<span class="w"> </span>=<span class="w"> </span><span class="s2">&#34;t2.micro&#34;</span><span class="w">
-</span><span class="w">
-</span><span class="w">  </span>tags<span class="w"> </span>=<span class="w"> </span>{<span class="w">
-</span><span class="w">    </span>Name<span class="w"> </span>=<span class="w"> </span><span class="s2">&#34;HelloWorld&#34;</span><span class="w">
-</span><span class="w">  </span>}<span class="w">
-</span><span class="w"></span>}<span class="w">
-</span></code></pre></div><h2 id="maintf-1">main.tf</h2>
-<p>No bloco provider do tipo aws existem argumentos deste tipo de bloco, neste caso de código são dois: a região em que devem ser feitas as alterações na Cloud e a versão do plugin do Terraform.</p>
-<p>E no bloco terraform especificamos o backend do tipo S3, com o nome do arquivo dentro de &ldquo;key&rdquo; e a região em que o bucket deve ser procurado.</p>
-<h2 id="ec2tf-1">ec2.tf</h2>
-<p>No bloco resource do tipo aws_instance existem os argumentos ami e instance_type que vão caracterizar como será a instância. Além do bloco tags que é muito útil para taguear a instância como fazemos normalmente no console para fins de Billing e etc.</p>
+<div class="highlight"><pre class="chroma"><code class="language-hcl" data-lang="hcl"><span class="k">resource</span> <span class="s2">&#34;aws_instance&#34; &#34;web&#34;</span> {
+<span class="n">  ami</span>           <span class="o">=</span> <span class="s2">&#34;ami-0885b1f6bd170450c&#34;</span>
+<span class="n">  instance_type</span> <span class="o">=</span> <span class="s2">&#34;t2.micro&#34;</span>
+
+<span class="n">  tags</span> <span class="o">=</span> {
+<span class="n">    Name</span> <span class="o">=</span> <span class="s2">&#34;HelloWorld&#34;</span>
+  }
+}
+</code></pre></div><h2 id="maintf-">main.tf &lt;&gt;</h2>
+<p>No bloco <em>provider</em> do tipo aws existem argumentos deste tipo de bloco, no caso é a região identificada por <em>&ldquo;us-east-1&rdquo;</em></p>
+<p>E no bloco terraform especificamos o <em>backend</em> do tipo <em><strong>S3</strong></em>, com o nome do arquivo dentro de <em>&ldquo;key&rdquo;</em> e a região em que o bucket deve ser procurado.</p>
+<h2 id="ec2tf-">ec2.tf &lt;&gt;</h2>
+<p>No bloco resource do tipo aws_instance existem os argumentos <em>ami</em> e <em>instance_type</em> que vão caracterizar como será a instância. Além do bloco <em>tags</em> que é muito útil para taguear a instância como fazemos normalmente no console para fins de <em>Billing</em> e etc.</p>
 <h1 id="ubuntu--docker--terraform">Ubuntu + Docker + Terraform</h1>
-<p>Recomendado como boa prática na comunidade é o uso de um container para rodar o Terraform &ldquo;localmente&rdquo;, e como o Docker roda melhor no Ubuntu é de boa prática usar este SO. Então sugiro subir uma t2.micro (grátis) na AWS e com o arquivo acima salvo (main.tf) e instalação do Docker* feita rodar o seguinte comando:</p>
+<p>Recomendado como boa prática na comunidade é o uso de um container para rodar o Terraform &ldquo;localmente&rdquo;, e como o Docker roda melhor no Ubuntu é de boa prática usar este <em>SO</em>. Então sugiro subir uma <em>t2.micro</em> na AWS e com o arquivo acima salvo <em>(main.tf)</em> e instalação do Docker* feita rodar o seguinte comando:</p>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">docker run -it -v <span class="s2">&#34;/caminho/da_pasta/com_main.tf_em_sua_máquina&#34;</span>:/app -w /app --entrypoint <span class="s2">&#34;&#34;</span> hashicorp/terraform:light sh
-</code></pre></div><p>O container é indicado porque também é seguro para as chaves de segurança do usuário administrador do IAM. Estas chaves são necessárias para que a máquina, no caso o container, possa se comunicar via API com a AWS e fazer a criação, alteração e possa excluir as alterações propostas. É recomendado que se faça desta forma pois quando o container não existir mais, as chaves também não existirão. Para adicionar as chaves via varável de ambiente é muito simples:</p>
+</code></pre></div><p>O container é indicado porque também é seguro para as chaves de segurança do usuário administrador do IAM. Estas chaves são necessárias para que a máquina, no caso o container, possa se comunicar via API com a AWS e fazer a criação, alteração e possa excluir as alterações propostas. É recomendado que se faça desta forma pois quando o container não existir mais, as chaves também não existirão. Para adicionar as chaves via variável de ambiente é muito simples:</p>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">export</span> <span class="nv">AWS_ACCESS_KEY_ID</span><span class="o">=(</span>valor da chave<span class="o">)</span>
 <span class="nb">export</span> <span class="nv">AWS_SECRET_ACCESS_KEY</span><span class="o">=(</span>valor da chave<span class="o">)</span>
 </code></pre></div><p>Com as chaves adicionadas no container, rode o seguinte comando:</p>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">terraform init
-</code></pre></div><p>Será feita a instalação do Terraform, será criada a pasta .terraform que contém tudo o que o binário do Terraform precisa para o <strong>plan</strong>, e será mapeado aonde será salvo o estado do Terraform:</p>
+</code></pre></div><p>Será feita a instalação do binário do Terraform <em>(pasta .terraform)</em>, que contém tudo o que o binário do Terraform precisa para o <strong>plan</strong>, e será mapeado aonde será salvo o estado do Terraform:</p>
 <p><img src="https://i.imgur.com/z252dkU.jpeg" alt=""></p>
 <p><img src="https://i.imgur.com/uSJbjKm.jpg" alt=""></p>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">terraform plan
 </code></pre></div><p>Será feito o plano de instalação. Aqui o Terraform vai checar inclusive a sintaxe nos arquivos e vai confirmar o que de fato será instalado:</p>
 <p><img src="https://i.imgur.com/8qpPimL.jpg" alt=""></p>
-<p>Os parâmetros setados no arquivo aparecem nesta fase, como o tipo da instancia e a ami. O restante não aparece porque de fato não foram setados e outros porque só aparecem após a criação do recurso (public ip, por exemplo).</p>
+<p>Os parâmetros setados no arquivo aparecem nesta fase, como o tipo da instancia e a ami. O restante não aparece porque de fato não foram setados e outros porque só aparecem após a criação do recurso (<em>public_ip</em>, por exemplo).</p>
 <p>No final ele informa que para executar as ações é só rodar:</p>
 <p><img src="https://i.imgur.com/S1tzSmA.jpg" alt=""></p>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">terraform apply
@@ -337,6 +336,14 @@ O tfstate é um &ldquo;banco de dados&rdquo; das suas alterações, ou seja, se 
 <p>Ele salva um arquivo binário de leitura do terraform que especifíca que estas alterações serão feitas e informa que para isso é preciso rodar o <strong>apply</strong> com o nome do arquivo.</p>
 <p>Confira o passo a passo no vídeo:</p>
 <p><a href="https://youtu.be/jY3OUrxqyDk"><img src="https://i.imgur.com/99ggouo.jpg" alt="Watch the video"></a></p>
+<p>****REFERÊNCIAS: ***</p>
+<p>Bucket S3* &gt; <a href="https://docs.aws.amazon.com/pt_br/AmazonS3/latest/userguide/creating-bucket.html">https://docs.aws.amazon.com/pt_br/AmazonS3/latest/userguide/creating-bucket.html</a>
+IAM* &gt; <a href="https://docs.aws.amazon.com/pt_br/IAM/latest/UserGuide/id_users_create.html">https://docs.aws.amazon.com/pt_br/IAM/latest/UserGuide/id_users_create.html</a>
+Argumentos, blocos e identificadores* &gt; <a href="https://www.terraform.io/docs/language/syntax/configuration.html">https://www.terraform.io/docs/language/syntax/configuration.html</a></p>
+<p><strong>FERRAMENTAS:</strong></p>
+<p>IaC: Terraform <strong>//</strong>
+Cloud: AWS <strong>//</strong>
+Container: Terraform Cloud</p>
 
 
         
