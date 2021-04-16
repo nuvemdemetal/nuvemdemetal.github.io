@@ -3,7 +3,57 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https:///nuvemdemetal.github.io/tags/aws/</loc>
+    <lastmod>2021-04-14T18:03:42-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https:///nuvemdemetal.github.io/tags/cloud/</loc>
+    <lastmod>2021-04-14T18:03:42-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https:///nuvemdemetal.github.io/tags/devops/</loc>
+    <lastmod>2021-04-14T18:03:42-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https:///nuvemdemetal.github.io/tags/docker/</loc>
+    <lastmod>2021-04-14T18:03:42-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https:///nuvemdemetal.github.io/tags/iac/</loc>
+    <lastmod>2021-04-14T18:03:42-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https:///nuvemdemetal.github.io/tags/metal/</loc>
+    <lastmod>2021-04-14T18:03:42-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https:///nuvemdemetal.github.io/tags/nuvem/</loc>
+    <lastmod>2021-04-14T18:03:42-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https:///nuvemdemetal.github.io/tags/nuvemdemetal/</loc>
+    <lastmod>2021-04-14T18:03:42-03:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https:///nuvemdemetal.github.io/posts/</loc>
+    <lastmod>2021-04-14T18:03:42-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https:///nuvemdemetal.github.io/tags/</loc>
+    <lastmod>2021-04-14T18:03:42-03:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https:///nuvemdemetal.github.io/tags/terraform/</loc>
     <lastmod>2021-04-14T18:03:42-03:00</lastmod>
   </url>
   
@@ -13,18 +63,13 @@
   </url>
   
   <url>
-    <loc>https:///nuvemdemetal.github.io/tags/aws/</loc>
-    <lastmod>2021-04-09T18:20:28-03:00</lastmod>
+    <loc>https:///nuvemdemetal.github.io/tags/terraformcloud/</loc>
+    <lastmod>2021-04-14T18:03:42-03:00</lastmod>
   </url>
   
   <url>
-    <loc>https:///nuvemdemetal.github.io/tags/cloud/</loc>
-    <lastmod>2021-04-09T18:20:28-03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https:///nuvemdemetal.github.io/tags/devops/</loc>
-    <lastmod>2021-04-09T18:20:28-03:00</lastmod>
+    <loc>https:///nuvemdemetal.github.io/tags/ubuntu/</loc>
+    <lastmod>2021-04-14T18:03:42-03:00</lastmod>
   </url>
   
   <url>
@@ -38,42 +83,7 @@
   </url>
   
   <url>
-    <loc>https:///nuvemdemetal.github.io/tags/iac/</loc>
-    <lastmod>2021-04-09T18:20:28-03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https:///nuvemdemetal.github.io/tags/metal/</loc>
-    <lastmod>2021-04-09T18:20:28-03:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https:///nuvemdemetal.github.io/posts/terraform_cloud/</loc>
-    <lastmod>2021-04-09T18:20:28-03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https:///nuvemdemetal.github.io/tags/nuvem/</loc>
-    <lastmod>2021-04-09T18:20:28-03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https:///nuvemdemetal.github.io/tags/nuvemdemetal/</loc>
-    <lastmod>2021-04-09T18:20:28-03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https:///nuvemdemetal.github.io/tags/</loc>
-    <lastmod>2021-04-09T18:20:28-03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https:///nuvemdemetal.github.io/tags/terraform/</loc>
-    <lastmod>2021-04-09T18:20:28-03:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https:///nuvemdemetal.github.io/tags/terraformcloud/</loc>
     <lastmod>2021-04-09T18:20:28-03:00</lastmod>
   </url>
   

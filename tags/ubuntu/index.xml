@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>terraformcloud on MetalHead</title>
-    <link>https:///nuvemdemetal.github.io/tags/terraformcloud/</link>
-    <description>Recent content in terraformcloud on MetalHead</description>
+    <title>ubuntu on MetalHead</title>
+    <link>https:///nuvemdemetal.github.io/tags/ubuntu/</link>
+    <description>Recent content in ubuntu on MetalHead</description>
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</managingEditor>
     <webMaster>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</webMaster>
     <lastBuildDate>Wed, 14 Apr 2021 18:03:42 -0300</lastBuildDate>
     
-	<atom:link href="https:///nuvemdemetal.github.io/tags/terraformcloud/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https:///nuvemdemetal.github.io/tags/ubuntu/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -20,17 +20,6 @@
       <guid>https:///nuvemdemetal.github.io/posts/terraform_init/</guid>
       <description>O Terraform trabalha basicamente através de regras de um arquivo de input. O binário do Terraform lê estes inputs, grava o estado das alterações em um arquivo (tfstate.tf) e empurra estas alterações para a Cloud:
 O tfstate é um &amp;ldquo;arquivo de armazenamento&amp;rdquo; das suas alterações, ou seja, se rodar o mesmo arquivo de input e não houver nenhuma alteração, o binário do Terraform vai entender que de fato não há nenhuma alteração a ser feita.</description>
-    </item>
-    
-    <item>
-      <title>Minha experiência com Terraform Cloud</title>
-      <link>https:///nuvemdemetal.github.io/posts/terraform_cloud/</link>
-      <pubDate>Fri, 09 Apr 2021 18:20:28 -0300</pubDate>
-      <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
-      <guid>https:///nuvemdemetal.github.io/posts/terraform_cloud/</guid>
-      <description>O Terraform Cloud é uma ferramenta nativa da Hashicorp usada para facilitar o CI/CD de ambientes com o Terraform.
-Benefícios:
- Não se preocupe com instalação ou plugins, o Terraform Cloud se encarrega de apenas rodar seu código. É possível avançar na criação e gerencia dos ambientes de forma auditável com o VCS. Através do VCS (Uso Github) integrado é possível manter controle de versão do código. Oferece segurança para dados sensíveis como o tstate.</description>
     </item>
     
   </channel>

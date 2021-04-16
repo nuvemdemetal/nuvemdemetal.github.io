@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</managingEditor>
     <webMaster>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</webMaster>
-    <lastBuildDate>Fri, 09 Apr 2021 18:20:28 -0300</lastBuildDate>
+    <lastBuildDate>Wed, 14 Apr 2021 18:03:42 -0300</lastBuildDate>
     
 	<atom:link href="https:///nuvemdemetal.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,7 +15,7 @@
     <item>
       <title>aws</title>
       <link>https:///nuvemdemetal.github.io/tags/aws/</link>
-      <pubDate>Fri, 09 Apr 2021 18:20:28 -0300</pubDate>
+      <pubDate>Wed, 14 Apr 2021 18:03:42 -0300</pubDate>
       <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
       <guid>https:///nuvemdemetal.github.io/tags/aws/</guid>
       <description></description>
@@ -24,7 +24,7 @@
     <item>
       <title>cloud</title>
       <link>https:///nuvemdemetal.github.io/tags/cloud/</link>
-      <pubDate>Fri, 09 Apr 2021 18:20:28 -0300</pubDate>
+      <pubDate>Wed, 14 Apr 2021 18:03:42 -0300</pubDate>
       <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
       <guid>https:///nuvemdemetal.github.io/tags/cloud/</guid>
       <description></description>
@@ -33,9 +33,81 @@
     <item>
       <title>devops</title>
       <link>https:///nuvemdemetal.github.io/tags/devops/</link>
-      <pubDate>Fri, 09 Apr 2021 18:20:28 -0300</pubDate>
+      <pubDate>Wed, 14 Apr 2021 18:03:42 -0300</pubDate>
       <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
       <guid>https:///nuvemdemetal.github.io/tags/devops/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>docker</title>
+      <link>https:///nuvemdemetal.github.io/tags/docker/</link>
+      <pubDate>Wed, 14 Apr 2021 18:03:42 -0300</pubDate>
+      <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
+      <guid>https:///nuvemdemetal.github.io/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>iac</title>
+      <link>https:///nuvemdemetal.github.io/tags/iac/</link>
+      <pubDate>Wed, 14 Apr 2021 18:03:42 -0300</pubDate>
+      <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
+      <guid>https:///nuvemdemetal.github.io/tags/iac/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>metal</title>
+      <link>https:///nuvemdemetal.github.io/tags/metal/</link>
+      <pubDate>Wed, 14 Apr 2021 18:03:42 -0300</pubDate>
+      <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
+      <guid>https:///nuvemdemetal.github.io/tags/metal/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>nuvem</title>
+      <link>https:///nuvemdemetal.github.io/tags/nuvem/</link>
+      <pubDate>Wed, 14 Apr 2021 18:03:42 -0300</pubDate>
+      <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
+      <guid>https:///nuvemdemetal.github.io/tags/nuvem/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>nuvemdemetal</title>
+      <link>https:///nuvemdemetal.github.io/tags/nuvemdemetal/</link>
+      <pubDate>Wed, 14 Apr 2021 18:03:42 -0300</pubDate>
+      <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
+      <guid>https:///nuvemdemetal.github.io/tags/nuvemdemetal/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>terraform</title>
+      <link>https:///nuvemdemetal.github.io/tags/terraform/</link>
+      <pubDate>Wed, 14 Apr 2021 18:03:42 -0300</pubDate>
+      <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
+      <guid>https:///nuvemdemetal.github.io/tags/terraform/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>terraformcloud</title>
+      <link>https:///nuvemdemetal.github.io/tags/terraformcloud/</link>
+      <pubDate>Wed, 14 Apr 2021 18:03:42 -0300</pubDate>
+      <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
+      <guid>https:///nuvemdemetal.github.io/tags/terraformcloud/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ubuntu</title>
+      <link>https:///nuvemdemetal.github.io/tags/ubuntu/</link>
+      <pubDate>Wed, 14 Apr 2021 18:03:42 -0300</pubDate>
+      <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
+      <guid>https:///nuvemdemetal.github.io/tags/ubuntu/</guid>
       <description></description>
     </item>
     
@@ -54,60 +126,6 @@
       <pubDate>Fri, 09 Apr 2021 18:20:28 -0300</pubDate>
       <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
       <guid>https:///nuvemdemetal.github.io/tags/github/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>iac</title>
-      <link>https:///nuvemdemetal.github.io/tags/iac/</link>
-      <pubDate>Fri, 09 Apr 2021 18:20:28 -0300</pubDate>
-      <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
-      <guid>https:///nuvemdemetal.github.io/tags/iac/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>metal</title>
-      <link>https:///nuvemdemetal.github.io/tags/metal/</link>
-      <pubDate>Fri, 09 Apr 2021 18:20:28 -0300</pubDate>
-      <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
-      <guid>https:///nuvemdemetal.github.io/tags/metal/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>nuvem</title>
-      <link>https:///nuvemdemetal.github.io/tags/nuvem/</link>
-      <pubDate>Fri, 09 Apr 2021 18:20:28 -0300</pubDate>
-      <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
-      <guid>https:///nuvemdemetal.github.io/tags/nuvem/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>nuvemdemetal</title>
-      <link>https:///nuvemdemetal.github.io/tags/nuvemdemetal/</link>
-      <pubDate>Fri, 09 Apr 2021 18:20:28 -0300</pubDate>
-      <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
-      <guid>https:///nuvemdemetal.github.io/tags/nuvemdemetal/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>terraform</title>
-      <link>https:///nuvemdemetal.github.io/tags/terraform/</link>
-      <pubDate>Fri, 09 Apr 2021 18:20:28 -0300</pubDate>
-      <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
-      <guid>https:///nuvemdemetal.github.io/tags/terraform/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>terraformcloud</title>
-      <link>https:///nuvemdemetal.github.io/tags/terraformcloud/</link>
-      <pubDate>Fri, 09 Apr 2021 18:20:28 -0300</pubDate>
-      <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
-      <guid>https:///nuvemdemetal.github.io/tags/terraformcloud/</guid>
       <description></description>
     </item>
     
