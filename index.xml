@@ -19,7 +19,7 @@
       <author>barbosa@nuvemdemetal.com.br (Heldo Barbosa)</author>
       <guid>https:///nuvemdemetal.github.io/posts/terraform_init/</guid>
       <description>O Terraform trabalha basicamente através de regras de um arquivo de input. O binário do Terraform lê estes inputs, grava o estado das alterações em um arquivo (tfstate.tf) e empurra estas alterações para a Cloud:
-O tfstate é um &amp;ldquo;banco de dados&amp;rdquo; das suas alterações, ou seja, se rodar o mesmo arquivo de input e não houver nenhuma alteração, o binário do Terraform vai entender que de fato não há nenhuma alteração a ser feita.</description>
+O tfstate é um &amp;ldquo;arquivo de armazenamento&amp;rdquo; das suas alterações, ou seja, se rodar o mesmo arquivo de input e não houver nenhuma alteração, o binário do Terraform vai entender que de fato não há nenhuma alteração a ser feita.</description>
     </item>
     
     <item>

@@ -9,7 +9,7 @@
 
   <title>terraform init // plan // apply // destroy - MetalHead</title>
   <meta name="description" content="O Terraform trabalha basicamente através de regras de um arquivo de input. O binário do Terraform lê estes inputs, grava o estado das alterações em um arquivo (tfstate.tf) e empurra estas alterações para a Cloud:
-O tfstate é um &ldquo;banco de dados&rdquo; das suas alterações, ou seja, se rodar o mesmo arquivo de input e não houver nenhuma alteração, o binário do Terraform vai entender que de fato não há nenhuma alteração a ser feita.">
+O tfstate é um &ldquo;arquivo de armazenamento&rdquo; das suas alterações, ou seja, se rodar o mesmo arquivo de input e não houver nenhuma alteração, o binário do Terraform vai entender que de fato não há nenhuma alteração a ser feita.">
   <meta name="author" content="Heldo Barbosa"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -58,7 +58,7 @@ O tfstate é um &ldquo;banco de dados&rdquo; das suas alterações, ou seja, se 
     "name" : "Heldo Barbosa"
   },
   "headline": "terraform init \/\/ plan \/\/ apply \/\/ destroy",
-  "description" : "O Terraform trabalha basicamente através de regras de um arquivo de input. O binário do Terraform lê estes inputs, grava o estado das alterações em um arquivo (tfstate.tf) e empurra estas alterações para a Cloud:\nO tfstate é um \x26ldquo;banco de dados\x26rdquo; das suas alterações, ou seja, se rodar o mesmo arquivo de input e não houver nenhuma alteração, o binário do Terraform vai entender que de fato não há nenhuma alteração a ser feita.",
+  "description" : "O Terraform trabalha basicamente através de regras de um arquivo de input. O binário do Terraform lê estes inputs, grava o estado das alterações em um arquivo (tfstate.tf) e empurra estas alterações para a Cloud:\nO tfstate é um \x26ldquo;arquivo de armazenamento\x26rdquo; das suas alterações, ou seja, se rodar o mesmo arquivo de input e não houver nenhuma alteração, o binário do Terraform vai entender que de fato não há nenhuma alteração a ser feita.",
   "inLanguage" : "en",
   "wordCount":  870 ,
   "datePublished" : "2021-04-14T18:03:42",
@@ -81,7 +81,7 @@ O tfstate é um &ldquo;banco de dados&rdquo; das suas alterações, ou seja, se 
 
 <meta property="og:title" content="terraform init // plan // apply // destroy" />
 <meta property="og:description" content="O Terraform trabalha basicamente através de regras de um arquivo de input. O binário do Terraform lê estes inputs, grava o estado das alterações em um arquivo (tfstate.tf) e empurra estas alterações para a Cloud:
-O tfstate é um &ldquo;banco de dados&rdquo; das suas alterações, ou seja, se rodar o mesmo arquivo de input e não houver nenhuma alteração, o binário do Terraform vai entender que de fato não há nenhuma alteração a ser feita.">
+O tfstate é um &ldquo;arquivo de armazenamento&rdquo; das suas alterações, ou seja, se rodar o mesmo arquivo de input e não houver nenhuma alteração, o binário do Terraform vai entender que de fato não há nenhuma alteração a ser feita.">
 <meta property="og:image" content="https:///nuvemdemetal.github.io/img/heldochileantifa.png" />
 <meta property="og:url" content="https:///nuvemdemetal.github.io/posts/terraform_init/" />
 <meta property="og:type" content="website" />
@@ -266,7 +266,7 @@ O tfstate é um &ldquo;banco de dados&rdquo; das suas alterações, ou seja, se 
       <article role="main" class="blog-post">
         <p>O Terraform trabalha basicamente através de regras de um arquivo de <em>input</em>. O binário do Terraform lê estes <em>inputs</em>, grava o estado das alterações em um arquivo <strong>(tfstate.tf)</strong> e empurra estas alterações para a Cloud:</p>
 <p><img src="https://i.imgur.com/HtFTAgW.jpg" alt=""></p>
-<p>O <em>tfstate</em> é um <strong>&ldquo;banco de dados&rdquo;</strong> das suas alterações, ou seja, se rodar o mesmo arquivo de <em>input</em> e não houver nenhuma alteração, o binário do Terraform vai entender que de fato não há nenhuma alteração a ser feita. Se houver, o arquivo <em>tfstate.tf</em> é alterado e as alterações vão parar em sua nuvem.</p>
+<p>O <em>tfstate</em> é um <strong>&ldquo;arquivo de armazenamento&rdquo;</strong> das suas alterações, ou seja, se rodar o mesmo arquivo de <em>input</em> e não houver nenhuma alteração, o binário do Terraform vai entender que de fato não há nenhuma alteração a ser feita. Se houver, o arquivo <em>tfstate.tf</em> é alterado e as alterações vão parar em sua nuvem.</p>
 <p><img src="https://site.guiainvest.com.br/wp-content/uploads/2016/12/seu-madruga-7.gif" alt=""></p>
 <p>O Terraform se comunica com a Cloud através da <em>API</em>, que é basicamente um software com parâmetros que permitem que a comunicação seja feita entre os dois <em>(Terraform e Cloud)</em>. Um exemplo disso é o próprio Console AWS, que é um painel <em>bonitão</em> que por baixo dos panos trabalha com uma <em>API</em>, então cada botão da plataforma tem um parâmetro que leva a uma ação lá na Nuvem AWS.</p>
 <p><img src="https://i.imgur.com/67Pl25O.jpg" alt=""></p>
